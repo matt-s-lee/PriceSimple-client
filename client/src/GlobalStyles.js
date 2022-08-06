@@ -18,7 +18,7 @@ export default createGlobalStyle`
   a, abbr, acronym, address, big, cite, code,
   del, dfn, em, img, ins, kbd, q, s, samp,
   small, strike, strong, sub, sup, tt, var,
-  b, u, i, center,
+  b, u, i, center, button,
   dl, dt, dd, ol, ul, li,
   fieldset, form, label, legend,
   caption, tbody, tfoot, thead, tr, th, td,
@@ -59,10 +59,8 @@ export default createGlobalStyle`
       content: none;
   }
 
-  h1, h2, h3, label, button {
-  color: #fff;
+  h1, h2, h3 {
   font-size: 32px;
-  text-align: center;
   }
 
   p, a, li, div, blockquote, input {

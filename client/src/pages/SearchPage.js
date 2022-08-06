@@ -1,11 +1,11 @@
 import React from "react";
 
-import Header from "../components/Header";
+import Header from "../components/Header/Header";
 
 const SearchPage = () => {
   return (
     <>
-      <Header />
+      {/* <Header /> */}
       <div>SearchPageSearchPaSearchPearchPageSearchPage</div>
       <div>SearchPageSearchPaSearchPearchPageSearchPage</div>
       <div>SearchPageSearchPaSearchPearchPageSearchPage</div>
