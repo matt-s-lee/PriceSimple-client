@@ -3,8 +3,8 @@ import { createGlobalStyle } from "styled-components";
 export default createGlobalStyle`
   :root {
     /* --color-cadmium-red: #D80026; */
-    /* --font-heading: 'Permanent Marker', Arial, Helvetica, sans-serif; */
-    /* --font-body: 'Kosugi', Arial, Helvetica, sans-serif; */
+    --font-titles: 'Permanent Marker', Arial, Helvetica, sans-serif;
+    /* --font-text: "Jost", Helvetica, sans-serif; */
     /* --padding-page: 24px; */
   }
 
@@ -32,6 +32,8 @@ export default createGlobalStyle`
       box-sizing: border-box;
       font-size: 100%;
       vertical-align: baseline;
+      font-family: "Jost", Helvetica, sans-serif;
+      font-weight: 300;
   }
   /* HTML5 display-role reset for older browsers */
   article, aside, details, figcaption, figure,
@@ -59,7 +61,6 @@ export default createGlobalStyle`
 
   h1, h2, h3, label, button {
   color: #fff;
-  font-family: var(--font-heading);
   font-size: 32px;
   text-align: center;
   }
