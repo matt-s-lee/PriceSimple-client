@@ -1,25 +1,44 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-function App() {
+import GlobalStyles from "./GlobalStyles";
+import styled from "styled-components";
+
+import Homepage from "./pages/Homepage";
+import SearchPage from "./pages/SearchPage";
+import ProfilePage from "./pages/ProfilePage";
+import BasketPage from "./pages/BasketPage";
+import ResultPage from "./pages/ResultPage";
+
+import Layout from "./components/Layout";
+
+const LayoutWrapper = ({ Component }) => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <LayoutWrap>
+      <Component />
+    </LayoutWrap>
   );
-}
+};
+
+const App = () => {
+  return (
+    <BrowserRouter>
+      <GlobalStyles />
+      <Routes>
+        <Route path="/" element={<Homepage />} />
+        <Route path="/search" element={<LayoutWrapper Component={<SearchPage />} />} />
+        <Route path="/results" element={<LayoutWrapper Component={<ResultPage />} />} />
+        <Route path="/basket" element={<LayoutWrapper Component={<BasketPage />} />} />
+        {/* should this be dynamic? */}
+        <Route path="/profile/:userId" element={<LayoutWrapper Component={<ProfilePage />} />} />
+        <Route path="">404</Route>
+      </Routes>
+    </BrowserRouter>
+  );
+};
+
+const LayoutWrap = styled(Layout)`
+  display: flex;
+  position: absolute;
+`;
 
 export default App;
