@@ -17,6 +17,9 @@ const Dropdown = ({ menuOpen, setMenuOpen }) => {
       <Options to="" onClick={clickHandler}>
         About
       </Options>
+      <Options to="profile" onClick={clickHandler}>
+        Profile
+      </Options>
     </Menu>
   );
 };
@@ -30,7 +33,7 @@ const Menu = styled.div`
 `;
 
 const Options = styled(NavLink)`
-  height: 25%;
+  height: 20%;
 `;
 
 export default Dropdown;

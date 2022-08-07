@@ -28,7 +28,8 @@ const App = () => {
         <Route exact path="/search" element={<SearchPage />} />
         <Route exact path="/results" element={<ResultPage />} />
         <Route exact path="/basket" element={<BasketPage />} />
-        <Route exact path="/profile/:userId" element={<ProfilePage />} />
+        <Route exact path="/profile/" element={<ProfilePage />} />
+        {/* <Route exact path="/profile/:userId" element={<ProfilePage />} /> */}
         <Route exact path="">
           404
         </Route>

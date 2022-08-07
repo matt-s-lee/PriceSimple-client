@@ -1,23 +1,25 @@
-import { useState } from "react";
-import { useNavigate, NavLink } from "react-router-dom";
-import { activateMenu } from "./headerHelpers";
-
 // https://stackoverflow.com/questions/32553158/detect-click-outside-react-component close menu on click outside
 // or MUI https://mui.com/material-ui/react-menu/
+// import { activateMenu } from "./headerHelpers";
+
+import { useState, useContext } from "react";
+import { useNavigate, NavLink } from "react-router-dom";
 
 import styled from "styled-components";
 
 import { HiMenuAlt2 } from "react-icons/hi";
 import { RiShoppingBasketLine } from "react-icons/ri";
 import Dropdown from "./Dropdown";
+import LoginButton from "./LoginButton";
+import LogoutButton from "./LogoutButton";
+import { UserContext } from "../../context/UserContext";
 
 const Header = () => {
+  const { state } = useContext(UserContext);
   const [menuOpen, setMenuOpen] = useState(false);
-  console.log(menuOpen);
   const pathname = window.location.pathname;
 
   const activateMenu = () => {
-    console.log("hello");
     setMenuOpen(!menuOpen);
   };
 
@@ -35,6 +37,8 @@ const Header = () => {
         <StyledLink to="basket">
           <RiShoppingBasketLine />
         </StyledLink>
+        {!state.currentUser && <LoginButton>Log-In</LoginButton>}
+        {state.currentUser && <LogoutButton>Log-Out</LogoutButton>}
       </Third>
     </Wrapper>
   );

@@ -1,12 +1,18 @@
-import React from "react";
-import Header from "../components/Header/Header";
+import { useContext } from "react";
+import { UserContext } from "../context/UserContext";
 
 const ProfilePage = () => {
+  const { state } = useContext(UserContext);
+  const user = state.currentUser;
+
   return (
-    <div>
-      <Header />
-      ProfilePage
-    </div>
+    state.currentUser && (
+      <div>
+        <img src={user.picture} alt={user.name} />
+        <h2>{user.name}</h2>
+        <p>{user.email}</p>
+      </div>
+    )
   );
 };
 
