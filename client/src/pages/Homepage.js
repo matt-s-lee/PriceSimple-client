@@ -9,9 +9,9 @@ const Homepage = () => {
   const {
     actions: { receiveUserData },
   } = useContext(UserContext);
-  console.log("userData", userData);
+  // console.log("userData", userData);
   useEffect(() => {
-    console.log("userData in useEffect", userData);
+    // console.log("userData in useEffect", userData);
     receiveUserData(userData);
   }, [user]);
 

@@ -1,4 +1,4 @@
-import { createContext, useReducer, useState } from "react";
+import { createContext, useReducer } from "react";
 
 export const UserContext = createContext();
 
@@ -9,8 +9,6 @@ const initialState = {
 };
 
 const reducer = (state, action) => {
-  console.log("state", state);
-  console.log("action", action);
   switch (action.type) {
     case "receive-user-data":
       return {
@@ -29,7 +27,7 @@ export const UserContextProvider = ({ children }) => {
 
   // SET currentUser to authenticated user
   const receiveUserData = (data) => {
-    console.log("data in func", data);
+    // console.log("data in func", data);
     dispatch({
       type: "receive-user-data",
       user: data,
@@ -41,15 +39,4 @@ export const UserContextProvider = ({ children }) => {
       {children}
     </UserContext.Provider>
   );
-  //   const [user, setUser] = useState();
-  //   const [isAuthenticated, setIsAuthenticated] = useState();
-  //   const [isLoading, setIsLoading] = useState();
-
-  //   return (
-  //     <UserContext.Provider
-  //       value={{ user, setUser, isAuthenticated, setIsAuthenticated, isLoading, setIsLoading }}
-  //     >
-  //       {children}
-  //     </UserContext.Provider>
-  //   );
 };

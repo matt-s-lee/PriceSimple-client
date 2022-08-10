@@ -1,3 +1,4 @@
+import { useContext, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import GlobalStyles from "./GlobalStyles";
@@ -8,17 +9,23 @@ import ProfilePage from "./pages/ProfilePage";
 import BasketPage from "./pages/BasketPage";
 import ResultPage from "./pages/ResultPage";
 import Header from "./components/Header/Header";
-
-// const LayoutWrapper = ({ Component }) => {
-//   return (
-//     <Header>
-//       <Component />
-//     </Header>
-//   );
-// };
-//         {/* <Route exact path="/search" element={<LayoutWrapper Component={SearchPage} />} /> */}
+import { ProductContext } from "./context/ProductContext";
 
 const App = () => {
+  const {
+    state,
+    actions: { receiveProductData },
+  } = useContext(ProductContext);
+
+  useEffect(() => {
+    fetch("http://localhost:8000/all-products")
+      .then((res) => res.json())
+      .then((json) => {
+        // console.log(json);
+        receiveProductData(json.data);
+      });
+  }, []);
+
   return (
     <BrowserRouter>
       <GlobalStyles />
@@ -39,3 +46,12 @@ const App = () => {
 };
 
 export default App;
+
+// const LayoutWrapper = ({ Component }) => {
+//   return (
+//     <Header>
+//       <Component />
+//     </Header>
+//   );
+// };
+//         {/* <Route exact path="/search" element={<LayoutWrapper Component={SearchPage} />} /> */}
