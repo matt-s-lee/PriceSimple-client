@@ -1,69 +1,12 @@
 import React from "react";
 
 import Header from "../components/Header/Header";
+import SearchBar from "../components/SearchBar/SearchBar";
 
 const SearchPage = () => {
   return (
     <>
-      {/* <Header /> */}
-      <div>SearchPageSearchPaSearchPearchPageSearchPage</div>
-      <div>SearchPageSearchPaSearchPearchPageSearchPage</div>
-      <div>SearchPageSearchPaSearchPearchPageSearchPage</div>
-      <div>SearchPageSearchPaSearchPearchPageSearchPage</div>
-      <div>SearchPageSearchPaSearchPearchPageSearchPage</div>
-      <div>SearchPageSearchPaSearchPearchPageSearchPage</div>
-      <div>SearchPageSearchPaSearchPearchPageSearchPage</div>
-      <div>SearchPageSearchPaSearchPearchPageSearchPage</div>
-      <div>SearchPageSearchPaSearchPearchPageSearchPage</div>
-      <div>SearchPageSearchPaSearchPearchPageSearchPage</div>
-      <div>SearchPageSearchPaSearchPearchPageSearchPage</div>
-      <div>SearchPageSearchPaSearchPearchPageSearchPage</div>
-      <div>SearchPageSearchPaSearchPearchPageSearchPage</div>
-      <div>SearchPageSearchPaSearchPearchPageSearchPage</div>
-      <div>SearchPageSearchPaSearchPearchPageSearchPage</div>
-      <div>SearchPageSearchPaSearchPearchPageSearchPage</div>
-      <div>SearchPageSearchPaSearchPearchPageSearchPage</div>
-      <div>SearchPageSearchPaSearchPearchPageSearchPage</div>
-      <div>SearchPageSearchPaSearchPearchPageSearchPage</div>
-      <div>SearchPageSearchPaSearchPearchPageSearchPage</div>
-      <div>SearchPageSearchPaSearchPearchPageSearchPage</div>
-      <div>SearchPageSearchPaSearchPearchPageSearchPage</div>
-      <div>SearchPageSearchPaSearchPearchPageSearchPage</div>
-      <div>SearchPageSearchPaSearchPearchPageSearchPage</div>
-      <div>SearchPageSearchPaSearchPearchPageSearchPage</div>
-      <div>SearchPageSearchPaSearchPearchPageSearchPage</div>
-      <div>SearchPageSearchPaSearchPearchPageSearchPage</div>
-      <div>SearchPageSearchPaSearchPearchPageSearchPage</div>
-      <div>SearchPageSearchPaSearchPearchPageSearchPage</div>
-      <div>SearchPageSearchPaSearchPearchPageSearchPage</div>
-      <div>SearchPageSearchPaSearchPearchPageSearchPage</div>
-      <div>SearchPageSearchPaSearchPearchPageSearchPage</div>
-      <div>SearchPageSearchPaSearchPearchPageSearchPage</div>
-      <div>SearchPageSearchPaSearchPearchPageSearchPage</div>
-      <div>SearchPageSearchPaSearchPearchPageSearchPage</div>
-      <div>SearchPageSearchPaSearchPearchPageSearchPage</div>
-      <div>SearchPageSearchPaSearchPearchPageSearchPage</div>
-      <div>SearchPageSearchPaSearchPearchPageSearchPage</div>
-      <div>SearchPageSearchPaSearchPearchPageSearchPage</div>
-      <div>SearchPageSearchPaSearchPearchPageSearchPage</div>
-      <div>SearchPageSearchPaSearchPearchPageSearchPage</div>
-      <div>SearchPageSearchPaSearchPearchPageSearchPage</div>
-      <div>SearchPageSearchPaSearchPearchPageSearchPage</div>
-      <div>SearchPageSearchPaSearchPearchPageSearchPage</div>
-      <div>SearchPageSearchPaSearchPearchPageSearchPage</div>
-      <div>SearchPageSearchPaSearchPearchPageSearchPage</div>
-      <div>SearchPageSearchPaSearchPearchPageSearchPage</div>
-      <div>SearchPageSearchPaSearchPearchPageSearchPage</div>
-      <div>SearchPageSearchPaSearchPearchPageSearchPage</div>
-      <div>SearchPageSearchPaSearchPearchPageSearchPage</div>
-      <div>SearchPageSearchPaSearchPearchPageSearchPage</div>
-      <div>SearchPageSearchPaSearchPearchPageSearchPage</div>
-      <div>SearchPageSearchPaSearchPearchPageSearchPage</div>
-      <div>SearchPageSearchPaSearchPearchPageSearchPage</div>
-      <div>SearchPageSearchPaSearchPearchPageSearchPage</div>
-      <div>SearchPageSearchPaSearchPearchPageSearchPage</div>
-      <div>SearchPageSearchPaSearchPearchPageSearchPage</div>
-      <div>SearchPageSearchPaSearchPearchPageSearchPage</div>
+      <SearchBar />
     </>
   );
 };
