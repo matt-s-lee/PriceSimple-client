@@ -23,6 +23,24 @@ const App = () => {
     actions: { receiveProductData },
   } = useContext(ProductContext);
 
+  const fetchUsers = async () => {
+    const response = await fetch(`http://localhost:8000/profile/${user.sub}`, {
+      method: "POST",
+      body: JSON.stringify({
+        _id: user.sub,
+        email: user.email,
+        name: user.name,
+        picture: user.picture,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const fetchedUsers = await response.json();
+    // setUsers(fetchedUsers.data);
+    console.log(fetchedUsers);
+  };
+
   useEffect(() => {
     fetch("http://localhost:8000/all-products")
       .then((res) => res.json())
@@ -31,29 +49,36 @@ const App = () => {
         receiveProductData(json.data);
       });
   }, []);
-
+  // comment
   useEffect(() => {
-    receiveUserData(user, isAuthenticated, isLoading);
-    if (user) {
-      fetch(`/profile/${user.sub}`, {
-        method: "POST",
-        body: JSON.stringify({
-          _id: user.sub,
-          email: user.email,
-          name: user.name,
-          picture: user.picture,
-        }),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          console.log("message", data.message);
-          // setProfileCreated(true);
-        });
+    // receiveUserData(user, isAuthenticated, isLoading);
+    if (isAuthenticated) {
+      fetchUsers();
     }
   }, [isAuthenticated]);
+
+  // useEffect(() => {
+  //   receiveUserData(user, isAuthenticated, isLoading);
+  //   if (isAuthenticated) {
+  //     console.log("hello");
+  //     fetch(`/profile/${user.sub}`, {
+  //       method: "POST",
+  //       body: JSON.stringify({
+  //         _id: user.sub,
+  //         email: user.email,
+  //         name: user.name,
+  //         picture: user.picture,
+  //       }),
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //     })
+  //       .then((res) => res.json())
+  //       .then((data) => {
+  //         console.log("message", data.message);
+  //       });
+  //   }
+  // }, [isAuthenticated, user]);
 
   return (
     <BrowserRouter>
@@ -72,7 +97,7 @@ const App = () => {
       </Routes>
     </BrowserRouter>
   );
-};
+};;;;;
 
 export default App;
 

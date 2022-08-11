@@ -13,11 +13,14 @@ import Dropdown from "./Dropdown";
 import LoginButton from "./LoginButton";
 import LogoutButton from "./LogoutButton";
 import { UserContext } from "../../context/UserContext";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const Header = () => {
   const { state } = useContext(UserContext);
   const [menuOpen, setMenuOpen] = useState(false);
   const pathname = window.location.pathname;
+
+  const { isAuthenticated } = useAuth0();
 
   const activateMenu = () => {
     setMenuOpen(!menuOpen);
@@ -37,8 +40,13 @@ const Header = () => {
         <StyledLink to="basket">
           <RiShoppingBasketLine />
         </StyledLink>
-        {!state.currentUser && <LoginButton>Log-In</LoginButton>}
-        {state.currentUser && <LogoutButton>Log-Out</LogoutButton>}
+        {/* {!state.currentUser && <LoginButton>Log-In</LoginButton>} */}
+        {/* {state.currentUser && <LogoutButton>Log-Out</LogoutButton>} */}
+        {isAuthenticated ? (
+          <LogoutButton>Log-Out</LogoutButton>
+        ) : (
+          <LoginButton>Log-In</LoginButton>
+        )}
       </Third>
     </Wrapper>
   );
