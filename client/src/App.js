@@ -1,5 +1,6 @@
 import { useContext, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
 
 import GlobalStyles from "./GlobalStyles";
 
@@ -10,10 +11,15 @@ import BasketPage from "./pages/BasketPage";
 import ResultPage from "./pages/ResultPage";
 import Header from "./components/Header/Header";
 import { ProductContext } from "./context/ProductContext";
+import { UserContext } from "./context/UserContext";
 
 const App = () => {
+  const { user, isAuthenticated, isLoading } = useAuth0();
   const {
     state,
+    actions: { receiveUserData },
+  } = useContext(UserContext);
+  const {
     actions: { receiveProductData },
   } = useContext(ProductContext);
 
@@ -21,10 +27,33 @@ const App = () => {
     fetch("http://localhost:8000/all-products")
       .then((res) => res.json())
       .then((json) => {
-        // console.log(json);
+        console.log(json);
         receiveProductData(json.data);
       });
   }, []);
+
+  useEffect(() => {
+    receiveUserData(user, isAuthenticated, isLoading);
+    if (user) {
+      fetch(`/profile/${user.sub}`, {
+        method: "POST",
+        body: JSON.stringify({
+          _id: user.sub,
+          email: user.email,
+          name: user.name,
+          picture: user.picture,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log("message", data.message);
+          // setProfileCreated(true);
+        });
+    }
+  }, [isAuthenticated]);
 
   return (
     <BrowserRouter>

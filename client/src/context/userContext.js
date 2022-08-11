@@ -13,9 +13,9 @@ const reducer = (state, action) => {
     case "receive-user-data":
       return {
         ...state,
-        currentUser: action.user.user,
-        authenticated: action.user.isAuthenticated,
-        stillLoading: action.user.isLoading,
+        currentUser: action.user,
+        authenticated: action.isAuthenticated,
+        stillLoading: action.isLoading,
       };
     default:
       throw new Error(`Unrecognized action: ${action.type}`);
@@ -26,11 +26,13 @@ export const UserContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   // SET currentUser to authenticated user
-  const receiveUserData = (data) => {
-    // console.log("data in func", data);
+  const receiveUserData = (user, isAuthenticated, isLoading) => {
+    console.log("data in func", user, isAuthenticated, isLoading);
     dispatch({
       type: "receive-user-data",
-      user: data,
+      user,
+      isAuthenticated,
+      isLoading,
     });
   };
 
