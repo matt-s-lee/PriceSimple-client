@@ -2,6 +2,7 @@ import { useEffect, useContext } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 
 import { UserContext } from "../context/UserContext";
+import SearchBar from "../components/SearchBar/SearchBar";
 
 const Homepage = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();
@@ -19,6 +20,7 @@ const Homepage = () => {
     <>
       <h1>PriceSimple</h1>
       <p>Find the best prices on produce at your local grocery store</p>
+      <SearchBar></SearchBar>
       <button>Search by Item</button>
     </>
   );

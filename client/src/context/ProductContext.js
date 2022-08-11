@@ -5,6 +5,8 @@ export const ProductContext = createContext();
 const initialState = {
   igaProducts: null,
   metroProducts: null,
+  allProducts: null,
+  searchMatches: null,
 };
 
 const reducer = (state, action) => {
@@ -15,6 +17,12 @@ const reducer = (state, action) => {
         ...state,
         igaProducts: action.igaData,
         metroProducts: action.metroData,
+        allProducts: action.igaData.concat(action.metroData),
+      };
+    case "store-matches-on-search":
+      return {
+        ...state,
+        searchMatches: action.matches,
       };
     default:
       throw new Error(`Unrecognized action: ${action.type}`);
@@ -25,7 +33,7 @@ export const ProductContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const receiveProductData = (data) => {
-    console.log("data in func", data);
+    // console.log("data in func", data);
     dispatch({
       type: "receive-product-data",
       igaData: data[0],
@@ -33,8 +41,17 @@ export const ProductContextProvider = ({ children }) => {
     });
   };
 
+  const storeMatchesOnSearch = (data) => {
+    dispatch({
+      type: "store-matches-on-search",
+      matches: data,
+    });
+  };
+
   return (
-    <ProductContext.Provider value={{ state, actions: { receiveProductData } }}>
+    <ProductContext.Provider
+      value={{ state, actions: { receiveProductData, storeMatchesOnSearch } }}
+    >
       {children}
     </ProductContext.Provider>
   );
