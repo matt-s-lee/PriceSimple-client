@@ -8,7 +8,7 @@ const initialState = {
 
 const reducer = (state, action) => {
   switch (action.type) {
-    case "get-user-cart":
+    case "update-user-cart":
       return {
         ...state,
         userCart: action.cart,
@@ -20,15 +20,16 @@ const reducer = (state, action) => {
 
 export const UserContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
-  const getUserCart = (data) => {
+  const updateUserCart = (data) => {
+    console.log(data);
     dispatch({
-      type: "get-user-cart",
+      type: "update-user-cart",
       cart: data,
     });
   };
 
   return (
-    <UserContext.Provider value={{ state, actions: { getUserCart } }}>
+    <UserContext.Provider value={{ state, actions: { updateUserCart } }}>
       {children}
     </UserContext.Provider>
   );

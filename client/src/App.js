@@ -13,10 +13,12 @@ import Header from "./components/Header";
 import { ProductContext } from "./context/ProductContext";
 import { UserContext } from "./context/UserContext";
 
+import { getUserCart } from "./helpers/getUserCart";
+
 const App = () => {
   const { user, isAuthenticated } = useAuth0();
   const {
-    actions: { getUserCart },
+    actions: { updateUserCart },
   } = useContext(UserContext);
   const {
     actions: { receiveProductData },
@@ -35,25 +37,30 @@ const App = () => {
         "Content-Type": "application/json",
       },
     });
-    const fetchedUsers = await response.json();
-    // setUsers(fetchedUsers.data);
-    console.log(fetchedUsers);
+    const fetchedUser = await response.json();
+    console.log(fetchedUser);
   };
 
-  useEffect(() => {
-    if (isAuthenticated) {
-      createUser();
-    }
-  }, [isAuthenticated]);
+  useEffect(
+    () => {
+      if (isAuthenticated) {
+        createUser();
+        getUserCart(user.sub, updateUserCart);
+      }
+    }, // eslint-disable-next-line
+    [isAuthenticated]
+  );
 
-  useEffect(() => {
-    fetch("http://localhost:8000/all-products")
-      .then((res) => res.json())
-      .then((json) => {
-        console.log(json);
-        receiveProductData(json.data);
-      });
-  }, []);
+  useEffect(
+    () => {
+      fetch("http://localhost:8000/all-products")
+        .then((res) => res.json())
+        .then((json) => {
+          receiveProductData(json.data);
+        });
+    }, // eslint-disable-next-line
+    []
+  );
 
   return (
     <BrowserRouter>
@@ -72,7 +79,7 @@ const App = () => {
       </Routes>
     </BrowserRouter>
   );
-};;;;;
+};;;;;;;;
 
 export default App;
 
