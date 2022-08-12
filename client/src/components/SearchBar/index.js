@@ -24,18 +24,19 @@ const SearchBar = () => {
           product.product_name.toUpperCase().includes(typed.toUpperCase()) && typed.length >= 2
         );
       });
-      setSearchMatches(searchMatches);
+      setSearchMatches({ searchMatches, typed });
     }
+    // eslint-disable-next-line
   }, [typed]);
 
   const handleSelect = (ev, index) => {
     ev.preventDefault();
     if (matchIndex === 0) {
       navigate("/results");
+      setTyped("");
     } else {
       // navigate(`/${matches[index]}`);
     }
-    setTyped("");
   };
 
   return (
@@ -58,11 +59,14 @@ const SearchBar = () => {
               setMatchIndex(matchIndex + 1);
               return;
             }
+            default: {
+              return;
+            }
           }
         }}
       />
       <ul>
-        {matches.length > 0 && (
+        {matches && matches.length > 0 && (
           <>
             <li>Examples</li>
           </>

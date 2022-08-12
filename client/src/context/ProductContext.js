@@ -7,6 +7,7 @@ const initialState = {
   metroProducts: null,
   allProducts: null,
   searchMatches: null,
+  searchTerm: null,
 };
 
 const reducer = (state, action) => {
@@ -23,6 +24,7 @@ const reducer = (state, action) => {
       return {
         ...state,
         searchMatches: action.matches,
+        searchTerm: action.searchTerm,
       };
     default:
       throw new Error(`Unrecognized action: ${action.type}`);
@@ -44,7 +46,8 @@ export const ProductContextProvider = ({ children }) => {
   const setSearchMatches = (data) => {
     dispatch({
       type: "set-search-matches",
-      matches: data,
+      matches: data.searchMatches,
+      searchTerm: data.typed,
     });
   };
 
