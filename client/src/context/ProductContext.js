@@ -19,7 +19,7 @@ const reducer = (state, action) => {
         metroProducts: action.metroData,
         allProducts: action.igaData.concat(action.metroData),
       };
-    case "store-matches-on-search":
+    case "set-search-matches":
       return {
         ...state,
         searchMatches: action.matches,
@@ -41,16 +41,16 @@ export const ProductContextProvider = ({ children }) => {
     });
   };
 
-  const storeMatchesOnSearch = (data) => {
+  const setSearchMatches = (data) => {
     dispatch({
-      type: "store-matches-on-search",
+      type: "set-search-matches",
       matches: data,
     });
   };
 
   return (
     <ProductContext.Provider
-      value={{ state, actions: { receiveProductData, storeMatchesOnSearch } }}
+      value={{ state, actions: { receiveProductData, setSearchMatches } }}
     >
       {children}
     </ProductContext.Provider>

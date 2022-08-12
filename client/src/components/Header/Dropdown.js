@@ -27,13 +27,14 @@ const Dropdown = ({ menuOpen, setMenuOpen }) => {
 const Menu = styled.div`
   display: flex;
   flex-direction: column;
-  height: 200px;
+  height: 20em;
   background: black;
   color: white;
 `;
 
 const Options = styled(NavLink)`
-  height: 20%;
+  height: 25%;
+  line-height: 5em;
 `;
 
 export default Dropdown;

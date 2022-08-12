@@ -1,9 +1,27 @@
 import { useEffect, useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 
 import { UserContext } from "../context/UserContext";
 
 const Homepage = () => {
+  let navigate = useNavigate();
+
+  const onClickFunc = (ev) => {
+    ev.preventDefault();
+    navigate("/search");
+  };
+  return (
+    <>
+      <h1>PriceSimple</h1>
+      <p>Find the best prices on produce at your local grocery store</p>
+      <button onClick={onClickFunc}>Search by Item</button>
+    </>
+  );
+};
+
+export default Homepage;
+
   // const { user, isAuthenticated, isLoading } = useAuth0();
   // const userData = { user, isAuthenticated, isLoading };
   // const {
@@ -36,14 +54,3 @@ const Homepage = () => {
   //   }
   // }, [isAuthenticated]);
   // eslint-disable-next-line
-
-  return (
-    <>
-      <h1>PriceSimple</h1>
-      <p>Find the best prices on produce at your local grocery store</p>
-      <button>Search by Item</button>
-    </>
-  );
-};
-
-export default Homepage;

@@ -1,11 +1,6 @@
-// import { useContext } from "react";
-// import { UserContext } from "../context/UserContext";
-
 import { useAuth0 } from "@auth0/auth0-react";
 
 const ProfilePage = () => {
-  // const { state } = useContext(UserContext);
-  // const user = state.currentUser;
   const { user } = useAuth0();
 
   return (

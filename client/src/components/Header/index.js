@@ -59,12 +59,12 @@ const Wrapper = styled.div`
   top: 0;
   background-color: green;
   border: 2px solid #4caf50;
-  height: 75px;
+  height: 5em;
 `;
 
 const Third = styled.div`
   width: 33%;
-  line-height: 75px;
+  line-height: 5em;
   &.nav-center {
     text-align: center;
   }

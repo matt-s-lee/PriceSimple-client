@@ -9,21 +9,20 @@ import SearchPage from "./pages/SearchPage";
 import ProfilePage from "./pages/ProfilePage";
 import BasketPage from "./pages/BasketPage";
 import ResultPage from "./pages/ResultPage";
-import Header from "./components/Header/Header";
+import Header from "./components/Header";
 import { ProductContext } from "./context/ProductContext";
 import { UserContext } from "./context/UserContext";
 
 const App = () => {
-  const { user, isAuthenticated, isLoading } = useAuth0();
+  const { user, isAuthenticated } = useAuth0();
   const {
-    state,
-    actions: { receiveUserData },
+    actions: { getUserCart },
   } = useContext(UserContext);
   const {
     actions: { receiveProductData },
   } = useContext(ProductContext);
 
-  const fetchUsers = async () => {
+  const createUser = async () => {
     const response = await fetch(`http://localhost:8000/profile/${user.sub}`, {
       method: "POST",
       body: JSON.stringify({
@@ -42,6 +41,12 @@ const App = () => {
   };
 
   useEffect(() => {
+    if (isAuthenticated) {
+      createUser();
+    }
+  }, [isAuthenticated]);
+
+  useEffect(() => {
     fetch("http://localhost:8000/all-products")
       .then((res) => res.json())
       .then((json) => {
@@ -49,36 +54,6 @@ const App = () => {
         receiveProductData(json.data);
       });
   }, []);
-  // comment
-  useEffect(() => {
-    // receiveUserData(user, isAuthenticated, isLoading);
-    if (isAuthenticated) {
-      fetchUsers();
-    }
-  }, [isAuthenticated]);
-
-  // useEffect(() => {
-  //   receiveUserData(user, isAuthenticated, isLoading);
-  //   if (isAuthenticated) {
-  //     console.log("hello");
-  //     fetch(`/profile/${user.sub}`, {
-  //       method: "POST",
-  //       body: JSON.stringify({
-  //         _id: user.sub,
-  //         email: user.email,
-  //         name: user.name,
-  //         picture: user.picture,
-  //       }),
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //     })
-  //       .then((res) => res.json())
-  //       .then((data) => {
-  //         console.log("message", data.message);
-  //       });
-  //   }
-  // }, [isAuthenticated, user]);
 
   return (
     <BrowserRouter>
@@ -109,3 +84,26 @@ export default App;
 //   );
 // };
 //         {/* <Route exact path="/search" element={<LayoutWrapper Component={SearchPage} />} /> */}
+
+// useEffect(() => {
+  //   receiveUserData(user, isAuthenticated, isLoading);
+  //   if (isAuthenticated) {
+  //     console.log("hello");
+  //     fetch(`/profile/${user.sub}`, {
+  //       method: "POST",
+  //       body: JSON.stringify({
+  //         _id: user.sub,
+  //         email: user.email,
+  //         name: user.name,
+  //         picture: user.picture,
+  //       }),
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //     })
+  //       .then((res) => res.json())
+  //       .then((data) => {
+  //         console.log("message", data.message);
+  //       });
+  //   }
+  // }, [isAuthenticated, user]);
