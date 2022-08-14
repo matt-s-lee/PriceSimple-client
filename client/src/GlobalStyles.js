@@ -2,9 +2,9 @@ import { createGlobalStyle } from "styled-components";
 
 export default createGlobalStyle`
   :root {
-    /* --color-cadmium-red: #D80026; */
-    --font-titles: 'Permanent Marker', Arial, Helvetica, sans-serif;
-    /* --font-text: "Jost", Helvetica, sans-serif; */
+    --color-button: #db967f;
+    --font-titles: "Roboto", Helvetica, sans-serif;
+    --font-text: "Jost", Helvetica, sans-serif;
     /* --padding-page: 24px; */
   }
 
@@ -18,7 +18,7 @@ export default createGlobalStyle`
   a, abbr, acronym, address, big, cite, code,
   del, dfn, em, img, ins, kbd, q, s, samp,
   small, strike, strong, sub, sup, tt, var,
-  b, u, i, center, button,
+  b, u, i, center, button, input,
   dl, dt, dd, ol, ul, li,
   fieldset, form, label, legend,
   caption, tbody, tfoot, thead, tr, th, td,
@@ -32,8 +32,9 @@ export default createGlobalStyle`
       box-sizing: border-box;
       font-size: 100%;
       vertical-align: baseline;
-      font-family: "Jost", Helvetica, sans-serif;
+      font-family: var(--font-text);
       font-weight: 300;
+      text-decoration: none;
   }
   /* HTML5 display-role reset for older browsers */
   article, aside, details, figcaption, figure,
@@ -41,12 +42,17 @@ export default createGlobalStyle`
       display: block;
   }
 
-  body {
+  /* body {
       line-height: 1;
-  }
+  } */
 
   ol, ul {
       list-style: none;
+  }
+
+  button {
+      background: none;
+      cursor: pointer;
   }
 
   blockquote, q {
@@ -59,13 +65,13 @@ export default createGlobalStyle`
       content: none;
   }
 
-  h1, h2, h3 {
-  font-size: 32px;
+  h2, h3 {
+    font-family: var(--font-titles);
   }
 
-  p, a, li, div, blockquote, input {
+  /* p, a, li, div, blockquote, input {
   font-family: var(--font-body);
-  }
+  } */
 
   input {
     font-size: 24px;

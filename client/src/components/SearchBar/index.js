@@ -1,5 +1,8 @@
 import { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+
+import styled from "styled-components";
+
 import { ProductContext } from "../../context/ProductContext";
 // import { findMatch, handleSelect, keyChangeFunc } from "./helpers";
 
@@ -41,7 +44,7 @@ const SearchBar = () => {
 
   return (
     <div>
-      <input
+      <Input
         type="text"
         value={typed}
         onChange={(ev) => setTyped(ev.target.value)}
@@ -80,4 +83,8 @@ const SearchBar = () => {
   );
 };
 
+const Input = styled.input`
+  border: 1px solid grey;
+  border-radius: 3px;
+`;
 export default SearchBar;

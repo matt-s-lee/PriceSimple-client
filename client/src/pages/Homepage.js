@@ -1,5 +1,6 @@
 import { useEffect, useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
 import { useAuth0 } from "@auth0/auth0-react";
 
 import { UserContext } from "../context/UserContext";
@@ -12,15 +13,51 @@ const Homepage = () => {
     navigate("/search");
   };
   return (
-    <>
-      <h1>PriceSimple</h1>
-      <p>Find the best prices on produce at your local grocery store</p>
-      <button onClick={onClickFunc}>Search by Item</button>
-    </>
+    <Background>
+      <Main>
+        <Title>PriceSimple</Title>
+        <Text>Find the best prices on produce at your local grocery store</Text>
+        <Button onClick={onClickFunc}>Search by Item</Button>
+      </Main>
+    </Background>
   );
 };
 
 export default Homepage;
+
+const Background = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: rgb(108, 186, 187);
+  background: linear-gradient(326deg, rgba(108, 186, 187, 1) 0%, rgba(129, 57, 237, 1) 100%);
+`;
+
+const Main = styled.div`
+  position: relative;
+  top: 5em;
+`;
+
+const Title = styled.h1`
+  font-size: 3.5em;
+  font-weight: 600;
+  margin-bottom: 1em;
+`;
+
+const Text = styled.p`
+  width: 60%;
+  line-height: 2em;
+  margin-bottom: 4em;
+`;
+
+const Button = styled.button`
+  border: 1px solid black;
+  border-radius: 8px;
+  padding: 0.4em 1em;
+  background: var(--color-button);
+`;
 
   // const { user, isAuthenticated, isLoading } = useAuth0();
   // const userData = { user, isAuthenticated, isLoading };

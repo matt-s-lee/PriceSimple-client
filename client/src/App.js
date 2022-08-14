@@ -1,8 +1,9 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 
 import GlobalStyles from "./GlobalStyles";
+import styled from "styled-components";
 
 import Homepage from "./pages/Homepage";
 import SearchPage from "./pages/SearchPage";
@@ -12,7 +13,6 @@ import ResultPage from "./pages/ResultPage";
 import Header from "./components/Header";
 import { ProductContext } from "./context/ProductContext";
 import { UserContext } from "./context/UserContext";
-
 import { getUserCart } from "./helpers/getUserCart";
 
 const App = () => {
@@ -71,7 +71,7 @@ const App = () => {
         <Route exact path="/search" element={<SearchPage />} />
         <Route exact path="/results" element={<ResultPage />} />
         <Route exact path="/basket" element={<BasketPage />} />
-        <Route exact path="/profile/" element={<ProfilePage />} />
+        <Route exact path="/profile" element={<ProfilePage />} />
         {/* <Route exact path="/profile/:userId" element={<ProfilePage />} /> */}
         <Route exact path="">
           404
@@ -79,7 +79,7 @@ const App = () => {
       </Routes>
     </BrowserRouter>
   );
-};;;;;;;;
+};
 
 export default App;
 
@@ -93,24 +93,24 @@ export default App;
 //         {/* <Route exact path="/search" element={<LayoutWrapper Component={SearchPage} />} /> */}
 
 // useEffect(() => {
-  //   receiveUserData(user, isAuthenticated, isLoading);
-  //   if (isAuthenticated) {
-  //     console.log("hello");
-  //     fetch(`/profile/${user.sub}`, {
-  //       method: "POST",
-  //       body: JSON.stringify({
-  //         _id: user.sub,
-  //         email: user.email,
-  //         name: user.name,
-  //         picture: user.picture,
-  //       }),
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //     })
-  //       .then((res) => res.json())
-  //       .then((data) => {
-  //         console.log("message", data.message);
-  //       });
-  //   }
-  // }, [isAuthenticated, user]);
+//   receiveUserData(user, isAuthenticated, isLoading);
+//   if (isAuthenticated) {
+//     console.log("hello");
+//     fetch(`/profile/${user.sub}`, {
+//       method: "POST",
+//       body: JSON.stringify({
+//         _id: user.sub,
+//         email: user.email,
+//         name: user.name,
+//         picture: user.picture,
+//       }),
+//       headers: {
+//         "Content-Type": "application/json",
+//       },
+//     })
+//       .then((res) => res.json())
+//       .then((data) => {
+//         console.log("message", data.message);
+//       });
+//   }
+// }, [isAuthenticated, user]);

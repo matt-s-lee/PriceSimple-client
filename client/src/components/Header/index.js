@@ -1,52 +1,54 @@
-// https://stackoverflow.com/questions/32553158/detect-click-outside-react-component close menu on click outside
-// or MUI https://mui.com/material-ui/react-menu/
-// import { activateMenu } from "./headerHelpers";
-
-import { useState, useContext } from "react";
-import { useNavigate, NavLink } from "react-router-dom";
+import { useState } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
 
 import styled from "styled-components";
 
 import { HiMenuAlt2 } from "react-icons/hi";
 import { RiShoppingBasketLine } from "react-icons/ri";
+import { BsPersonCircle } from "react-icons/bs";
 import Dropdown from "./Dropdown";
 import LoginButton from "./LoginButton";
 import LogoutButton from "./LogoutButton";
-import { UserContext } from "../../context/UserContext";
 import { useAuth0 } from "@auth0/auth0-react";
 
 const Header = () => {
-  const { state } = useContext(UserContext);
-  const [menuOpen, setMenuOpen] = useState(false);
-  const pathname = window.location.pathname;
+  const { user, isAuthenticated } = useAuth0();
+  console.log(isAuthenticated);
 
-  const { isAuthenticated } = useAuth0();
+  const [menuOpen, setMenuOpen] = useState(false);
+  const navigate = useNavigate();
 
   const activateMenu = () => {
     setMenuOpen(!menuOpen);
   };
 
-  let navigate = useNavigate();
   return (
-    <Wrapper>
+    <Wrapper className={window.location.pathname === "/" ? "home" : "other"}>
       <Third>
         <HiMenuAlt2 onClick={activateMenu} />
-        {menuOpen ? <Dropdown menuOpen={menuOpen} setMenuOpen={setMenuOpen} /> : null}
+        {menuOpen ? <Menu menuOpen={menuOpen} setMenuOpen={setMenuOpen} /> : null}
       </Third>
       <Third className="nav-center">
-        {pathname !== "/" ? <StyledLink to="/">PriceSimple.</StyledLink> : null}
+        {window.location.pathname === "/" ? null : (
+          <Title
+            onClick={() => {
+              navigate("/");
+            }}
+          >
+            PriceSimple.
+          </Title>
+        )}
       </Third>
       <Third className="nav-right">
         <StyledLink to="basket">
           <RiShoppingBasketLine />
         </StyledLink>
-        {/* {!state.currentUser && <LoginButton>Log-In</LoginButton>} */}
-        {/* {state.currentUser && <LogoutButton>Log-Out</LogoutButton>} */}
         {isAuthenticated ? (
-          <LogoutButton>Log-Out</LogoutButton>
-        ) : (
-          <LoginButton>Log-In</LoginButton>
-        )}
+          <StyledLink to={`profile/${user.sub}`}>
+            <BsPersonCircle />
+          </StyledLink>
+        ) : null}
+        {isAuthenticated ? <LogoutButton /> : <LoginButton />}
       </Third>
     </Wrapper>
   );
@@ -57,25 +59,41 @@ const Wrapper = styled.div`
   position: sticky;
   display: flex;
   top: 0;
-  background-color: green;
-  border: 2px solid #4caf50;
+  background: ${(props) => (props.className === "home" ? "transparent" : "#edf0d3")};
   height: 5em;
+  z-index: 2;
 `;
 
 const Third = styled.div`
   width: 33%;
-  line-height: 5em;
+  display: flex;
+  align-items: center;
   &.nav-center {
-    text-align: center;
+    justify-content: center;
   }
   &.nav-right {
-    text-align: right;
+    display: flex;
+    align-items: center;
+    justify-content: end;
   }
 `;
 
+const Title = styled.button`
+  color: black;
+  font-size: 1.5em;
+  font-weight: 800;
+`;
+
 const StyledLink = styled(NavLink)`
-  color: white;
+  color: black;
   text-decoration: none;
+  font-size: 1.25em;
+`;
+
+const Menu = styled(Dropdown)`
+  opacity: ${(props) => (props.menuOpen === true ? "1" : "0")};
+  height: ${(props) => (props.menuOpen === true ? "100%" : "0%")};
+  transition: all 2s ease;
 `;
 
 export default Header;
