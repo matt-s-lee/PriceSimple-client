@@ -26,7 +26,7 @@ const Header = () => {
     <Wrapper className={window.location.pathname === "/" ? "home" : "other"}>
       <Third>
         <HiMenuAlt2 onClick={activateMenu} />
-        <Menu menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
+        <Dropdown menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
       </Third>
       <Third className="nav-center">
         {window.location.pathname === "/" ? null : (
@@ -65,6 +65,7 @@ const Wrapper = styled.div`
 `;
 
 const Third = styled.div`
+  padding: 0 1em;
   width: 33%;
   display: flex;
   align-items: center;
@@ -88,12 +89,7 @@ const StyledLink = styled(NavLink)`
   color: black;
   text-decoration: none;
   font-size: 1.25em;
-`;
-
-const Menu = styled(Dropdown)`
-  /* opacity: ${(props) => (props.menuOpen === true ? "1" : "0")};
-  height: ${(props) => (props.menuOpen === true ? "100%" : "0%")};
-  transition: all 2s ease; */
+  margin-right: 0.25em;
 `;
 
 export default Header;

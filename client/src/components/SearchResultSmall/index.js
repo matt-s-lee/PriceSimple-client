@@ -45,7 +45,17 @@ const SearchResultSmall = ({
       </Details>
       <div>
         <ChangeQuantityButton numItems={numItems} setNumItems={setNumItems} />
-        <AddToCartButton id={id} numItems={numItems} />
+        <AddToCartButton
+          product={product}
+          soldByPackage={soldByPackage}
+          soldByWeight={soldByWeight}
+          soldIndividually={soldIndividually}
+          store={store}
+          imgSrc={imgSrc}
+          link={link}
+          id={id}
+          numItems={numItems}
+        />
       </div>
     </Card>
   );
@@ -56,6 +66,9 @@ export default SearchResultSmall;
 const Card = styled.div`
   display: flex;
   height: 10em;
+  border: 1px solid blue;
+  border-radius: 10px;
+  margin: 0.4em 0.3em 0.4em 0.3em;
 `;
 
 const Image = styled.img`

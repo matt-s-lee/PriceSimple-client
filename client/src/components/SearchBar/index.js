@@ -43,9 +43,11 @@ const SearchBar = () => {
   };
 
   return (
-    <div>
+    <>
+      <Background typed={typed}></Background>
       <Input
         type="text"
+        placeholder="Type here"
         value={typed}
         onChange={(ev) => setTyped(ev.target.value)}
         onKeyDown={(ev) => {
@@ -68,23 +70,53 @@ const SearchBar = () => {
           }
         }}
       />
-      <ul>
+      <Results>
         {matches && matches.length > 0 && (
           <>
-            <li>Examples</li>
+            <Examples>Examples</Examples>
           </>
         )}
         {matches &&
           matches.map((match) => {
             return <li key={match._id}>{match.product_name}</li>;
           })}
-      </ul>
-    </div>
+      </Results>
+    </>
   );
 };
+
+const Background = styled.div`
+  visibility: ${(props) => (props.typed ? "visible" : "hidden")};
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0.4;
+  background: black;
+`;
 
 const Input = styled.input`
   border: 1px solid grey;
   border-radius: 3px;
+  margin-left: 1em;
+  line-height: 2em;
+  width: calc(100% - 2em);
+  opacity: 1;
+  z-index: 2;
 `;
+
+const Results = styled.ul`
+  margin: 1.5em 0 0 1.5em;
+  width: calc(100% - 3em);
+  opacity: 1;
+  z-index: 2;
+  background: transparent;
+`;
+
+const Examples = styled.li`
+  font-weight: 600;
+`;
+
+
 export default SearchBar;

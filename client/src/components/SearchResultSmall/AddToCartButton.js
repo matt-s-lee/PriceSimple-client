@@ -1,9 +1,25 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import LoginModal from "../LoginModal";
 
 import { useAuth0 } from "@auth0/auth0-react";
 
-const ButtonAddToCart = ({ id, numItems }) => {
+import { getUserCart } from "../../helpers/getUserCart";
+import { UserContext } from "../../context/UserContext";
+
+const ButtonAddToCart = ({
+  product,
+  soldByPackage,
+  soldByWeight,
+  soldIndividually,
+  store,
+  imgSrc,
+  link,
+  id,
+  numItems,
+}) => {
+  const {
+    actions: { updateUserCart },
+  } = useContext(UserContext);
   const [visible, setVisible] = useState(false);
   const { user, isAuthenticated } = useAuth0();
   const onClickFunc = (ev) => {
@@ -17,11 +33,21 @@ const ButtonAddToCart = ({ id, numItems }) => {
         body: JSON.stringify({
           productId: id,
           quantity: numItems,
+          product,
+          soldByPackage,
+          soldByWeight,
+          soldIndividually,
+          store,
+          imgSrc,
+          link,
         }),
       })
         .then((res) => res.json())
         .then((json) => {
           console.log("JSON", json);
+          if (json.status === 200) {
+            getUserCart(user.sub, updateUserCart);
+          }
         });
     } else {
       setVisible(!visible);

@@ -1,9 +1,8 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 
 import GlobalStyles from "./GlobalStyles";
-import styled from "styled-components";
 
 import Homepage from "./pages/Homepage";
 import SearchPage from "./pages/SearchPage";
