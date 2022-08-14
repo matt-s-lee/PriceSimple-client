@@ -5,7 +5,7 @@ import { UserContext } from "../context/UserContext";
 import { useAuth0 } from "@auth0/auth0-react";
 import { getUserCart } from "../helpers/getUserCart";
 
-import SearchResultSmall from "../components/SearchResultSmall";
+import BasketResult from "../components/BasketResult";
 
 const BasketPage = () => {
   const { user, isAuthenticated } = useAuth0();
@@ -29,7 +29,7 @@ const BasketPage = () => {
       {userCart &&
         userCart.map((item) => {
           return (
-            <SearchResultSmall
+            <BasketResult
               key={item.productId}
               productId={item.productId}
               quantity={item.quantity}

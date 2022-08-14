@@ -41,7 +41,7 @@ const Menu = styled.div`
   background-color: white;
   opacity: ${(props) => (props.open === true ? "1" : "0")};
   height: ${(props) => (props.open === true ? "100%" : "0%")};
-  transition: all 2s ease;
+  transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
 `;
 
 const Close = styled.button`

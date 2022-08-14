@@ -26,7 +26,7 @@ const Header = () => {
     <Wrapper className={window.location.pathname === "/" ? "home" : "other"}>
       <Third>
         <HiMenuAlt2 onClick={activateMenu} />
-        {menuOpen ? <Menu menuOpen={menuOpen} setMenuOpen={setMenuOpen} /> : null}
+        <Menu menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
       </Third>
       <Third className="nav-center">
         {window.location.pathname === "/" ? null : (
@@ -91,9 +91,9 @@ const StyledLink = styled(NavLink)`
 `;
 
 const Menu = styled(Dropdown)`
-  opacity: ${(props) => (props.menuOpen === true ? "1" : "0")};
+  /* opacity: ${(props) => (props.menuOpen === true ? "1" : "0")};
   height: ${(props) => (props.menuOpen === true ? "100%" : "0%")};
-  transition: all 2s ease;
+  transition: all 2s ease; */
 `;
 
 export default Header;
