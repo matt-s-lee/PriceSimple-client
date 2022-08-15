@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 
-import { GrFormClose } from "react-icons/gr";
+import { IoClose } from "react-icons/io5";
 import styled from "styled-components";
 
 const Dropdown = ({ menuOpen, setMenuOpen }) => {
@@ -11,7 +11,7 @@ const Dropdown = ({ menuOpen, setMenuOpen }) => {
   return (
     <Menu open={menuOpen}>
       <Close>
-        <GrFormClose onClick={clickHandler} />
+        <IoClose onClick={clickHandler} />
       </Close>
       <Options to="search" onClick={clickHandler}>
         Search Item
@@ -38,21 +38,25 @@ const Menu = styled.div`
   top: 0;
   width: 100%;
   overflow: auto;
-  background-color: white;
+  background-color: black;
   opacity: ${(props) => (props.open === true ? "1" : "0")};
   height: ${(props) => (props.open === true ? "100%" : "0%")};
-  transition: all 0.4s ease-out;
+  transition: all 0.2s ease-out;
 `;
 
 const Close = styled.button`
   height: 10%;
   line-height: 5em;
+  color: white;
+  z-index: 5;
 `;
 
 const Options = styled(NavLink)`
   height: 10%;
   line-height: 5em;
-  color: black;
+  color: white;
+  margin-left: 2em;
+  font-family: var(--font-titles);
 `;
 
 // const Dialog = styled.div`

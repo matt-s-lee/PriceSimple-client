@@ -3,6 +3,8 @@ import styled from "styled-components";
 import AddToCartButton from "./AddToCartButton";
 import ChangeQuantityButton from "./ChangeQuantityButton";
 import DeleteButton from "./DeleteButton";
+import metroLogoSrc from "../assets/metroLogo.svg";
+import voilaLogoSrc from "../assets/voilaLogo.svg";
 
 const SearchResultSmall = ({
   product,
@@ -17,6 +19,13 @@ const SearchResultSmall = ({
   remove,
 }) => {
   const [numItems, setNumItems] = useState(1);
+  const showLogo = (store) => {
+    if (store === "iga") {
+      return <img svg={voilaLogoSrc} />;
+    } else {
+      return <img svg={metroLogoSrc} />;
+    }
+  };
 
   return (
     <Card>
@@ -27,7 +36,7 @@ const SearchResultSmall = ({
         <div>{product}</div>
         {soldIndividually.is === true && (
           <>
-            <a href={link}>{store}</a>
+            <a href={link}>{showLogo(store)}</a>
             <div>${soldIndividually.price_per_item}</div>
           </>
         )}
@@ -68,7 +77,7 @@ const SearchResultSmall = ({
             numItems={numItems}
           />
         ) : null}
-        {remove ? <DeleteButton id={id}/> : null}
+        {remove ? <DeleteButton id={id} /> : null}
       </Cart>
     </Card>
   );
