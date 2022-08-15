@@ -66,8 +66,13 @@ export default createGlobalStyle`
       content: none;
   }
 
+  h1 {
+    font-family: var(--font-titles);
+    font-size: 1.7em;
+  }
   h2, h3 {
     font-family: var(--font-titles);
+    font-size: 1.5em;
   }
 
   /* p, a, li, div, blockquote, input {

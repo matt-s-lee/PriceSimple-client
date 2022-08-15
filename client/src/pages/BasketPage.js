@@ -1,4 +1,7 @@
 import { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+
+import styled from "styled-components";
 
 import { UserContext } from "../context/UserContext";
 import { useAuth0 } from "@auth0/auth0-react";
@@ -14,7 +17,9 @@ const BasketPage = () => {
     actions: { updateUserCart },
   } = useContext(UserContext);
   const userCart = state.userCart;
-  const [remove, setRemove] = useState(true);
+  const [visible, setVisible] = useState(true);
+  const [remove] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(
     () => {
@@ -27,10 +32,38 @@ const BasketPage = () => {
 
   if (userCart) {
     return (
-      <>
-        <h2>YOUR BASKET</h2>
+      <Wrapper>
+        <Title>YOUR BASKET</Title>
+        <h2>IGA</h2>
         <div>
-          {userCart.map((item) => {
+          {userCart
+            .filter((item) => {
+              return item.store === "iga";
+            })
+            .map((item) => {
+              return (
+                <SearchResultSmall
+                  remove={remove}
+                  key={item.productId}
+                  id={item.productId}
+                  quantity={item.quantity}
+                  product={item.product}
+                  soldByPackage={item.soldByPackage}
+                  soldByWeight={item.soldByWeight}
+                  soldIndividually={item.soldIndividually}
+                  store={item.store}
+                  imgSrc={item.imgSrc}
+                  link={item.link}
+                />
+              );
+            })}
+        </div>
+        <h2>METRO</h2>
+        {userCart
+          .filter((item) => {
+            return item.store === "metro";
+          })
+          .map((item) => {
             return (
               <SearchResultSmall
                 remove={remove}
@@ -47,12 +80,36 @@ const BasketPage = () => {
               />
             );
           })}
-        </div>
-      </>
+        <div></div>
+        <button onClick={() => navigate("/results")}>Back to results</button>
+      </Wrapper>
     );
   } else {
-    return <LoginModal />;
+    return visible ? (
+      <LoginModal visible={visible} setVisible={setVisible} />
+    ) : (
+      <EmptyMsg>
+        Your basket is <em>empty</em>
+      </EmptyMsg>
+    );
   }
 };
+
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const Title = styled.h1`
+  align-self: center;
+`;
+
+const EmptyMsg = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 15em;
+`;
 
 export default BasketPage;

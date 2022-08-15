@@ -6,6 +6,7 @@ import styled from "styled-components";
 
 const LoginModal = ({ visible, setVisible }) => {
   const { loginWithRedirect } = useAuth0();
+  console.log(visible);
 
   const handleExit = (ev) => {
     ev.preventDefault();
@@ -16,7 +17,7 @@ const LoginModal = ({ visible, setVisible }) => {
     <>
       <Background onClick={handleExit}></Background>
       <Dialog>
-        <RiCloseCircleLine onClick={handleExit} />
+        <Close onClick={handleExit} />
         <Text>
           Only members can add items to the cart! Please{" "}
           <button onClick={() => loginWithRedirect()}>sign-in or sign-up</button>
@@ -44,10 +45,17 @@ const Dialog = styled.div`
   top: 30%;
   background-color: white;
   border: 1px solid #888;
+  border-radius: 5px;
   z-index: 2;
+  margin: 0 5em;
+`;
+
+const Close = styled(RiCloseCircleLine)`
+  position: absolute;
 `;
 
 const Text = styled.div`
+  text-align: center;
   padding: 20px;
 `;
 

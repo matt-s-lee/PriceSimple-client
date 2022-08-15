@@ -48,8 +48,7 @@ const Title = styled.h1`
   font-size: 3.5em;
   align-self: center;
   font-weight: 600;
-  /* text-shadow: 1px 1px 4px var(); */
-  /* margin-bottom: 1em; */
+  font-family: var(--font-text);
 `;
 
 const Text = styled.p`

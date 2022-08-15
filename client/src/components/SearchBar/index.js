@@ -109,6 +109,8 @@ const Input = styled.input`
 const Results = styled.ul`
   margin: 1.5em 0 0 1.5em;
   width: calc(100% - 3em);
+  overflow: hidden;
+  max-height: 30em;
   z-index: 2;
   background: transparent;
 `;

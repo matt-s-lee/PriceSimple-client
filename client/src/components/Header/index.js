@@ -44,7 +44,7 @@ const Header = () => {
             <RiShoppingBasketLine />
           </StyledLink>
           {isAuthenticated ? (
-            <StyledLink to={`profile/${user.sub}`}>
+            <StyledLink to={`profile/`}>
               <BsPersonCircle />
             </StyledLink>
           ) : null}

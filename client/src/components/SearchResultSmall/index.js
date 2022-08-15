@@ -3,8 +3,8 @@ import styled from "styled-components";
 import AddToCartButton from "./AddToCartButton";
 import ChangeQuantityButton from "./ChangeQuantityButton";
 import DeleteButton from "./DeleteButton";
-import metroLogoSrc from "../assets/metroLogo.svg";
-import voilaLogoSrc from "../assets/voilaLogo.svg";
+import { ReactComponent as MetroLogo } from "../../assets/metroLogo.svg";
+import { ReactComponent as VoilaLogo } from "../../assets/voilaLogo.svg";
 
 const SearchResultSmall = ({
   product,
@@ -15,15 +15,17 @@ const SearchResultSmall = ({
   imgSrc,
   link,
   id,
+  quantity,
   add,
   remove,
 }) => {
   const [numItems, setNumItems] = useState(1);
+
   const showLogo = (store) => {
     if (store === "iga") {
-      return <img svg={voilaLogoSrc} />;
+      return <VoilaLink />;
     } else {
-      return <img svg={metroLogoSrc} />;
+      return <MetroLink />;
     }
   };
 
@@ -33,7 +35,7 @@ const SearchResultSmall = ({
         <Image src={imgSrc} />
       </Column>
       <Details>
-        <div>{product}</div>
+        <Product>{product}</Product>
         {soldIndividually.is === true && (
           <>
             <a href={link}>{showLogo(store)}</a>
@@ -42,7 +44,7 @@ const SearchResultSmall = ({
         )}
         {soldByPackage.is === true && (
           <>
-            <a href={link}>{store}</a>
+            <a href={link}>{showLogo(store)}</a>
             <div>${soldByPackage.price_per_package}</div>
             {soldByPackage.price_per_100g && <div>${soldByPackage.price_per_100g}/100g</div>}
             <div>{soldByPackage.units_per_package}</div>
@@ -50,7 +52,7 @@ const SearchResultSmall = ({
         )}
         {soldByWeight.is === true && (
           <>
-            <a href={link}>{store}</a>
+            <a href={link}>{showLogo(store)}</a>
             <div>${soldByWeight.price_per_lb}/lb</div>
             <div>${soldByWeight.price_per_kg}/kg</div>
             <div>${(soldByWeight.price_per_kg / 10).toFixed(2)}/100g</div>
@@ -58,12 +60,17 @@ const SearchResultSmall = ({
         )}
       </Details>
       <Cart>
-        <ChangeQuantityButton
-          id={id}
-          numItems={numItems}
-          setNumItems={setNumItems}
-          remove={remove}
-        />
+        {add ? (
+          <ChangeQuantityButton
+            id={id}
+            numItems={numItems}
+            setNumItems={setNumItems}
+            remove={remove}
+            add={add}
+          />
+        ) : (
+          <div>{quantity}</div>
+        )}
         {add ? (
           <AddToCartButton
             product={product}
@@ -103,10 +110,20 @@ const Image = styled.img`
 const Column = styled.div`
   display: flex;
   flex-direction: column;
+  font-family: "Jost", sans-serif;
 `;
 
 const Details = styled(Column)`
   width: 50%;
+`;
+
+const Product = styled.div`
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* number of lines to show */
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
 `;
 
 const Cart = styled.div`
@@ -114,4 +131,12 @@ const Cart = styled.div`
   flex-direction: column;
   align-items: center;
   margin-left: 1em;
+`;
+
+const VoilaLink = styled(VoilaLogo)`
+  height: 1em;
+`;
+
+const MetroLink = styled(MetroLogo)`
+  height: 1em;
 `;

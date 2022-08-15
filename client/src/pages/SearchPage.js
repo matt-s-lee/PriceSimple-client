@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import Divider from "../components/Divider";
+// import Divider from "../components/Divider";
 import SearchBar from "../components/SearchBar";
 import bowl from "../assets/edited_bowl.png";
 
@@ -22,8 +22,10 @@ const Background = styled.div`
   position: fixed;
   width: 100%;
   height: 100%;
-  background: rgb(108, 186, 187);
-  background: linear-gradient(326deg, rgba(108, 186, 187, 1) 0%, rgba(129, 57, 237, 1) 100%);
+  /* background: rgb(108, 186, 187);
+  background: linear-gradient(326deg, rgba(108, 186, 187, 1) 0%, rgba(129, 57, 237, 1) 100%); */
+  background: rgb(255, 255, 255);
+  background: linear-gradient(0deg, rgba(255, 255, 255, 1) 0%, rgba(132, 116, 209, 1) 100%);
   color: white;
   display: flex;
   flex-direction: column;

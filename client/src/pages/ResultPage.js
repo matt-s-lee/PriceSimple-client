@@ -8,7 +8,7 @@ import { ProductContext } from "../context/ProductContext";
 const ResultPage = () => {
   const { state } = useContext(ProductContext);
   const matches = state.searchMatches;
-  const [add, setAdd] = useState(true);
+  const [add] = useState(true);
 
   if (matches) {
     console.log("matches", matches);
