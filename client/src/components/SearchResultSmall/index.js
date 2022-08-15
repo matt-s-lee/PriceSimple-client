@@ -2,6 +2,7 @@ import { useState } from "react";
 import styled from "styled-components";
 import AddToCartButton from "./AddToCartButton";
 import ChangeQuantityButton from "./ChangeQuantityButton";
+import DeleteButton from "./DeleteButton";
 
 const SearchResultSmall = ({
   product,
@@ -12,12 +13,16 @@ const SearchResultSmall = ({
   imgSrc,
   link,
   id,
+  add,
+  remove,
 }) => {
   const [numItems, setNumItems] = useState(1);
 
   return (
     <Card>
-      <Image src={imgSrc} />
+      <Column>
+        <Image src={imgSrc} />
+      </Column>
       <Details>
         <div>{product}</div>
         {soldIndividually.is === true && (
@@ -43,20 +48,28 @@ const SearchResultSmall = ({
           </>
         )}
       </Details>
-      <div>
-        <ChangeQuantityButton numItems={numItems} setNumItems={setNumItems} />
-        <AddToCartButton
-          product={product}
-          soldByPackage={soldByPackage}
-          soldByWeight={soldByWeight}
-          soldIndividually={soldIndividually}
-          store={store}
-          imgSrc={imgSrc}
-          link={link}
+      <Cart>
+        <ChangeQuantityButton
           id={id}
           numItems={numItems}
+          setNumItems={setNumItems}
+          remove={remove}
         />
-      </div>
+        {add ? (
+          <AddToCartButton
+            product={product}
+            soldByPackage={soldByPackage}
+            soldByWeight={soldByWeight}
+            soldIndividually={soldIndividually}
+            store={store}
+            imgSrc={imgSrc}
+            link={link}
+            id={id}
+            numItems={numItems}
+          />
+        ) : null}
+        {remove ? <DeleteButton id={id}/> : null}
+      </Cart>
     </Card>
   );
 };
@@ -66,9 +79,10 @@ export default SearchResultSmall;
 const Card = styled.div`
   display: flex;
   height: 10em;
-  border: 1px solid blue;
+  border: 1px solid lightgray;
   border-radius: 10px;
-  margin: 0.4em 0.3em 0.4em 0.3em;
+  margin: 0.4em 0.3em;
+  padding: 0.4em 0.3em;
 `;
 
 const Image = styled.img`
@@ -77,7 +91,18 @@ const Image = styled.img`
   height: 5em;
 `;
 
-const Details = styled.div`
+const Column = styled.div`
   display: flex;
   flex-direction: column;
+`;
+
+const Details = styled(Column)`
+  width: 50%;
+`;
+
+const Cart = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 1em;
 `;

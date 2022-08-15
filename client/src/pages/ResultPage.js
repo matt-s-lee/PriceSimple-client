@@ -1,4 +1,6 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
+
+import styled from "styled-components";
 
 import SearchResultSmall from "../components/SearchResultSmall";
 import { ProductContext } from "../context/ProductContext";
@@ -6,12 +8,15 @@ import { ProductContext } from "../context/ProductContext";
 const ResultPage = () => {
   const { state } = useContext(ProductContext);
   const matches = state.searchMatches;
+  const [add, setAdd] = useState(true);
 
   if (matches) {
     console.log("matches", matches);
     return (
       <>
-        <div>Returning results for {state.searchTerm}</div>
+        <Title>
+          Returning results for <Term>{state.searchTerm}</Term>
+        </Title>
         <div>
           {matches.map((match) => {
             return (
@@ -25,6 +30,8 @@ const ResultPage = () => {
                 store={match.store}
                 imgSrc={match.img_src}
                 link={match.link}
+                data={match}
+                add={add}
               />
             );
           })}
@@ -33,5 +40,14 @@ const ResultPage = () => {
     );
   }
 };
+
+const Title = styled.h2`
+  margin: 1em;
+`;
+
+const Term = styled.span`
+  font-family: var(--font-titles);
+  font-weight: 600;
+`;
 
 export default ResultPage;

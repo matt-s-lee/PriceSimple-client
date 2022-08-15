@@ -1,8 +1,9 @@
 import { useState, useContext } from "react";
-import LoginModal from "../LoginModal";
-
 import { useAuth0 } from "@auth0/auth0-react";
 
+import styled from "styled-components";
+
+import LoginModal from "../LoginModal";
 import { getUserCart } from "../../helpers/getUserCart";
 import { UserContext } from "../../context/UserContext";
 
@@ -44,7 +45,6 @@ const ButtonAddToCart = ({
       })
         .then((res) => res.json())
         .then((json) => {
-          console.log("JSON", json);
           if (json.status === 200) {
             getUserCart(user.sub, updateUserCart);
           }
@@ -56,10 +56,17 @@ const ButtonAddToCart = ({
 
   return (
     <>
-      <button onClick={onClickFunc}>Add to Cart</button>
+      <Button onClick={onClickFunc}>Add to Basket</Button>
       {visible ? <LoginModal visible={visible} setVisible={setVisible} /> : null}
     </>
   );
 };
+
+export const Button = styled.button`
+  background: var(--color-button);
+  padding: 0.1em;
+  border: 1px solid black;
+  border-radius: 3px;
+`;
 
 export default ButtonAddToCart;

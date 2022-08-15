@@ -2,12 +2,12 @@ import styled from "styled-components";
 
 import Divider from "../components/Divider";
 import SearchBar from "../components/SearchBar";
-import bowl from "../images/edited_bowl.png";
+import bowl from "../assets/edited_bowl.png";
 
 const SearchPage = () => {
   return (
     <Background>
-      <Title>What are you shopping for?</Title>
+      <Title>{"What's on your list?".toUpperCase()}</Title>
       {/* <Divider /> */}
       <SearchBar />
       <Image />
@@ -32,7 +32,7 @@ const Background = styled.div`
 
 const Title = styled.h2`
   margin: 2em 0 1em 0;
-  font-weight: 300;
+  font-weight: 100;
   font-size: 30px;
   align-self: center;
   /* letter-spacing: 2px; */

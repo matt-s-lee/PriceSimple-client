@@ -12,8 +12,7 @@ import LogoutButton from "./LogoutButton";
 import { useAuth0 } from "@auth0/auth0-react";
 
 const Header = () => {
-  const { user, isAuthenticated } = useAuth0();
-  console.log(isAuthenticated);
+  const { user, isAuthenticated, isLoading } = useAuth0();
 
   const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
@@ -39,20 +38,22 @@ const Header = () => {
           </Title>
         )}
       </Third>
-      <Third className="nav-right">
-        <StyledLink to="basket">
-          <RiShoppingBasketLine />
-        </StyledLink>
-        {isAuthenticated ? (
-          <StyledLink to={`profile/${user.sub}`}>
-            <BsPersonCircle />
+      {isLoading ? null : (
+        <Third className="nav-right">
+          <StyledLink to="basket">
+            <RiShoppingBasketLine />
           </StyledLink>
-        ) : null}
-        {isAuthenticated ? <LogoutButton /> : <LoginButton />}
-      </Third>
+          {isAuthenticated ? (
+            <StyledLink to={`profile/${user.sub}`}>
+              <BsPersonCircle />
+            </StyledLink>
+          ) : null}
+          {isAuthenticated ? <LogoutButton /> : <LoginButton />}
+        </Third>
+      )}
     </Wrapper>
   );
-};
+};;;
 
 const Wrapper = styled.div`
   position: -webkit-sticky; /* Safari */

@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-import photo from "../images/pexels-olena-bohovyk-3323687.jpeg";
+import photo from "../assets/pexels-olena-bohovyk-3323687.jpeg";
 
 const Homepage = () => {
   let navigate = useNavigate();

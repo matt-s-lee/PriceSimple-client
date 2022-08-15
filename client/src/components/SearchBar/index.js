@@ -73,7 +73,7 @@ const SearchBar = () => {
       <Results>
         {matches && matches.length > 0 && (
           <>
-            <Examples>Examples</Examples>
+            <Examples>Maybe you're looking for...</Examples>
           </>
         )}
         {matches &&
@@ -102,14 +102,13 @@ const Input = styled.input`
   margin-left: 1em;
   line-height: 2em;
   width: calc(100% - 2em);
-  opacity: 1;
   z-index: 2;
+  font-family: var(--font-titles);
 `;
 
 const Results = styled.ul`
   margin: 1.5em 0 0 1.5em;
   width: calc(100% - 3em);
-  opacity: 1;
   z-index: 2;
   background: transparent;
 `;
