@@ -6,6 +6,7 @@ import styled from "styled-components";
 import LoginModal from "../LoginModal";
 import { getUserCart } from "../../helpers/getUserCart";
 import { UserContext } from "../../context/UserContext";
+import { Confirmation } from "../Confirmation";
 
 const ButtonAddToCart = ({
   product,
@@ -22,7 +23,9 @@ const ButtonAddToCart = ({
     actions: { updateUserCart },
   } = useContext(UserContext);
   const [visible, setVisible] = useState(false);
+  const [open, setOpen] = useState(false);
   const { user, isAuthenticated } = useAuth0();
+
   const onClickFunc = (ev) => {
     ev.preventDefault();
     if (isAuthenticated) {
@@ -47,6 +50,7 @@ const ButtonAddToCart = ({
         .then((json) => {
           if (json.status === 200) {
             getUserCart(user.sub, updateUserCart);
+            setOpen(true);
           }
         });
     } else {
@@ -58,13 +62,15 @@ const ButtonAddToCart = ({
     <>
       <Button onClick={onClickFunc}>Add to Basket</Button>
       {visible ? <LoginModal visible={visible} setVisible={setVisible} /> : null}
+      <Confirmation open={open} setOpen={setOpen} />
     </>
   );
 };
 
 export const Button = styled.button`
-  background: var(--color-button);
+  background: #4e5156;
   padding: 0.1em;
+  color: white;
   border: 1px solid black;
   border-radius: 3px;
 `;

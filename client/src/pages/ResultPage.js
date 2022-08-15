@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 
 import styled from "styled-components";
+import SearchButton from "../components/SearchButton";
 
 import SearchResultSmall from "../components/SearchResultSmall";
 import { ProductContext } from "../context/ProductContext";
@@ -17,25 +18,30 @@ const ResultPage = () => {
         <Title>
           Returning results for <Term>{state.searchTerm}</Term>
         </Title>
-        <div>
-          {matches.map((match) => {
-            return (
-              <SearchResultSmall
-                key={match._id}
-                id={match._id}
-                product={match.product_name}
-                soldByPackage={match.sold_by_package}
-                soldByWeight={match.sold_by_weight}
-                soldIndividually={match.sold_individually}
-                store={match.store}
-                imgSrc={match.img_src}
-                link={match.link}
-                data={match}
-                add={add}
-              />
-            );
-          })}
-        </div>
+        {matches.length > 0 ? (
+          <div>
+            {matches.map((match) => {
+              return (
+                <SearchResultSmall
+                  key={match._id}
+                  id={match._id}
+                  product={match.product_name}
+                  soldByPackage={match.sold_by_package}
+                  soldByWeight={match.sold_by_weight}
+                  soldIndividually={match.sold_individually}
+                  store={match.store}
+                  imgSrc={match.img_src}
+                  link={match.link}
+                  data={match}
+                  add={add}
+                />
+              );
+            })}
+          </div>
+        ) : (
+          <Message>Why don't you try searching for something?</Message>
+        )}
+        <SearchButton />
       </>
     );
   }
@@ -43,11 +49,16 @@ const ResultPage = () => {
 
 const Title = styled.h2`
   margin: 1em;
+  color: #333333;
 `;
 
 const Term = styled.span`
   font-family: var(--font-titles);
   font-weight: 600;
+`;
+
+const Message = styled.div`
+  margin: 1em;
 `;
 
 export default ResultPage;

@@ -1,4 +1,5 @@
 import { useContext, useEffect } from "react";
+import styled from "styled-components";
 import { Button } from "./AddToCartButton";
 import { useAuth0 } from "@auth0/auth0-react";
 
@@ -31,7 +32,7 @@ const DeleteButton = ({ id }) => {
     }
   };
 
-  return <Button onClick={handleRemove}>Remove from cart</Button>;
+  return <Button onClick={handleRemove}>Remove item</Button>;
 };
 
 export default DeleteButton;

@@ -69,7 +69,7 @@ const SearchResultSmall = ({
             add={add}
           />
         ) : (
-          <div>{quantity}</div>
+          <div>Quantity: {quantity}</div>
         )}
         {add ? (
           <AddToCartButton
@@ -95,22 +95,26 @@ export default SearchResultSmall;
 const Card = styled.div`
   display: flex;
   height: 10em;
-  border: 1px solid lightgray;
+  border: 1px solid #828282;
   border-radius: 10px;
-  margin: 0.4em 0.3em;
-  padding: 0.4em 0.3em;
+  margin: 0.5em 0.5em;
+  padding: 0.5em 0.5em;
+  font-family: "Roboto", sans-serif;
 `;
 
 const Image = styled.img`
   display: flex;
   flex-direction: column;
-  height: 5em;
+  max-height: 100%;
+  width: auto;
+  object-fit: contain;
 `;
 
 const Column = styled.div`
   display: flex;
   flex-direction: column;
   font-family: "Jost", sans-serif;
+  width: 25%;
 `;
 
 const Details = styled(Column)`
@@ -130,7 +134,7 @@ const Cart = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-left: 1em;
+  width: 25%;
 `;
 
 const VoilaLink = styled(VoilaLogo)`

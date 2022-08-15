@@ -9,6 +9,7 @@ import { getUserCart } from "../helpers/getUserCart";
 
 import LoginModal from "../components/LoginModal";
 import SearchResultSmall from "../components/SearchResultSmall";
+import SearchButton from "../components/SearchButton";
 
 const BasketPage = () => {
   const { user, isAuthenticated } = useAuth0();
@@ -34,7 +35,7 @@ const BasketPage = () => {
     return (
       <Wrapper>
         <Title>YOUR BASKET</Title>
-        <h2>IGA</h2>
+        <H2>IGA</H2>
         <div>
           {userCart
             .filter((item) => {
@@ -58,7 +59,7 @@ const BasketPage = () => {
               );
             })}
         </div>
-        <h2>METRO</h2>
+        <H2>METRO</H2>
         {userCart
           .filter((item) => {
             return item.store === "metro";
@@ -82,15 +83,19 @@ const BasketPage = () => {
           })}
         <div></div>
         <button onClick={() => navigate("/results")}>Back to results</button>
+        <SearchButton />
       </Wrapper>
     );
   } else {
     return visible ? (
       <LoginModal visible={visible} setVisible={setVisible} />
     ) : (
-      <EmptyMsg>
-        Your basket is <em>empty</em>
-      </EmptyMsg>
+      <>
+        <EmptyMsg>
+          Your basket is <em>empty</em>
+        </EmptyMsg>
+        <SearchButton />
+      </>
     );
   }
 };
@@ -102,6 +107,11 @@ const Wrapper = styled.div`
 
 const Title = styled.h1`
   align-self: center;
+  margin: 1em 0 0.5em 0;
+`;
+
+const H2 = styled.h2`
+  margin-left: 0.5em;
 `;
 
 const EmptyMsg = styled.div`
