@@ -37,8 +37,6 @@ const SearchBar = () => {
     if (matchIndex === 0) {
       navigate("/results");
       setTyped("");
-    } else {
-      // navigate(`/${matches[index]}`);
     }
   };
 
@@ -54,14 +52,6 @@ const SearchBar = () => {
           switch (ev.key) {
             case "Enter": {
               handleSelect(ev, matchIndex);
-              return;
-            }
-            case "ArrowUp": {
-              setMatchIndex(matchIndex - 1);
-              return;
-            }
-            case "ArrowDown": {
-              setMatchIndex(matchIndex + 1);
               return;
             }
             default: {

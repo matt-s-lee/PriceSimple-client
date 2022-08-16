@@ -5,10 +5,16 @@ import { BsSearch } from "react-icons/bs";
 const SearchButton = () => {
   const navigate = useNavigate();
 
+  const handleClick = () => {
+    navigate("/search");
+  };
+
   return (
-    <Search onClick={() => navigate("/search")}>
-      <BsSearch />
-    </Search>
+    <>
+      <Search onClick={handleClick}>
+        <BsSearch />
+      </Search>
+    </>
   );
 };
 

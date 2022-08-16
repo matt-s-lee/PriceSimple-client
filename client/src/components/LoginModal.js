@@ -1,6 +1,6 @@
 import React from "react";
 import { useAuth0 } from "@auth0/auth0-react";
-import { RiCloseCircleLine } from "react-icons/ri";
+import { IoClose } from "react-icons/io5";
 
 import styled from "styled-components";
 
@@ -17,7 +17,7 @@ const LoginModal = ({ visible, setVisible }) => {
     <>
       <Background onClick={handleExit}></Background>
       <Dialog>
-        <Close onClick={handleExit} />
+        <IoClose onClick={handleExit} />
         <Text>
           Only members can add items to the cart! Please{" "}
           <button onClick={() => loginWithRedirect()}>sign-in or sign-up</button>
@@ -41,6 +41,9 @@ const Background = styled.div`
 
 const Dialog = styled.div`
   position: fixed;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   left: 0;
   top: 30%;
   background-color: white;
@@ -48,15 +51,12 @@ const Dialog = styled.div`
   border-radius: 5px;
   z-index: 2;
   margin: 0 5em;
-`;
-
-const Close = styled(RiCloseCircleLine)`
-  position: absolute;
+  padding: 1em;
 `;
 
 const Text = styled.div`
   text-align: center;
-  padding: 20px;
+  padding: 1em;
 `;
 
 export default LoginModal;

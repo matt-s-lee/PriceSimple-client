@@ -46,16 +46,18 @@ const SearchResultSmall = ({
           <>
             <a href={link}>{showLogo(store)}</a>
             <div>${soldByPackage.price_per_package}</div>
-            {soldByPackage.price_per_100g && <div>${soldByPackage.price_per_100g}/100g</div>}
-            <div>{soldByPackage.units_per_package}</div>
+            {soldByPackage.price_per_100g && (
+              <SmallFont>${soldByPackage.price_per_100g}/100g</SmallFont>
+            )}
+            <SmallFont>{soldByPackage.units_per_package}</SmallFont>
           </>
         )}
         {soldByWeight.is === true && (
           <>
             <a href={link}>{showLogo(store)}</a>
             <div>${soldByWeight.price_per_lb}/lb</div>
-            <div>${soldByWeight.price_per_kg}/kg</div>
-            <div>${(soldByWeight.price_per_kg / 10).toFixed(2)}/100g</div>
+            <SmallFont>${soldByWeight.price_per_kg}/kg</SmallFont>
+            <SmallFont>${(soldByWeight.price_per_kg / 10).toFixed(2)}/100g</SmallFont>
           </>
         )}
       </Details>
@@ -69,7 +71,7 @@ const SearchResultSmall = ({
             add={add}
           />
         ) : (
-          <div>Quantity: {quantity}</div>
+          <div>Qty: {quantity}</div>
         )}
         {add ? (
           <AddToCartButton
@@ -100,6 +102,10 @@ const Card = styled.div`
   margin: 0.5em 0.5em;
   padding: 0.5em 0.5em;
   font-family: "Roboto", sans-serif;
+
+  @media only screen and (min-width: 800px) {
+    width: 30%;
+  }
 `;
 
 const Image = styled.img`
@@ -108,6 +114,7 @@ const Image = styled.img`
   max-height: 100%;
   width: auto;
   object-fit: contain;
+  padding: 0.25em;
 `;
 
 const Column = styled.div`
@@ -128,6 +135,7 @@ const Product = styled.div`
   -webkit-line-clamp: 2; /* number of lines to show */
   line-clamp: 2;
   -webkit-box-orient: vertical;
+  font-weight: 600;
 `;
 
 const Cart = styled.div`
@@ -143,4 +151,8 @@ const VoilaLink = styled(VoilaLogo)`
 
 const MetroLink = styled(MetroLogo)`
   height: 1em;
+`;
+
+const SmallFont = styled.div`
+  font-size: 0.8em;
 `;

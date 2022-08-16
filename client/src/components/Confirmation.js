@@ -1,20 +1,34 @@
-import { useState } from "react";
-// import Button from "@mui/material/Button";
+import styled from "styled-components";
 import Snackbar from "@mui/material/Snackbar";
-// import IconButton from "@mui/material/IconButton";
-// import CloseIcon from "@mui/icons-material/Close";
+import { IoIosClose } from "react-icons/io";
 
 export const Confirmation = ({ open, setOpen }) => {
-  const handleClose = (ev, reason) => {
-    if (reason === "clickaway") {
-      return;
-      setOpen(false);
-    }
-
-    return (
-      <div>
-        <Snackbar open={open} autoHideDuration={3000} onClose={handleClose} message="Closed" />
-      </div>
-    );
+  const handleClose = (ev) => {
+    setOpen(false);
   };
+
+  const action = (
+    <>
+      <button onClick={handleClose}>
+        <IoIosClose fontSize="20px" color="white" />
+      </button>
+    </>
+  );
+
+  return (
+    <Wrapper>
+      <Snackbar
+        open={open}
+        autoHideDuration={2000}
+        onClose={handleClose}
+        message="Added to basket"
+        action={action}
+        sx={{ width: 200 }}
+      />
+    </Wrapper>
+  );
 };
+
+const Wrapper = styled.div`
+  width: 2em;
+`;

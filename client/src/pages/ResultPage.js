@@ -19,7 +19,7 @@ const ResultPage = () => {
           Returning results for <Term>{state.searchTerm}</Term>
         </Title>
         {matches.length > 0 ? (
-          <div>
+          <Matches>
             {matches.map((match) => {
               return (
                 <SearchResultSmall
@@ -37,7 +37,7 @@ const ResultPage = () => {
                 />
               );
             })}
-          </div>
+          </Matches>
         ) : (
           <Message>Why don't you try searching for something?</Message>
         )}
@@ -59,6 +59,13 @@ const Term = styled.span`
 
 const Message = styled.div`
   margin: 1em;
+`;
+
+const Matches = styled.div`
+  @media only screen and (min-width: 800px) {
+    display: flex;
+    flex-wrap: wrap;
+  }
 `;
 
 export default ResultPage;

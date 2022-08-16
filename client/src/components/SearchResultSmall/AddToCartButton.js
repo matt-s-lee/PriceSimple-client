@@ -50,7 +50,7 @@ const ButtonAddToCart = ({
         .then((json) => {
           if (json.status === 200) {
             getUserCart(user.sub, updateUserCart);
-            setOpen(true);
+            setOpen(!open);
           }
         });
     } else {
