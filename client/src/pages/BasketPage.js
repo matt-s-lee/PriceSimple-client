@@ -105,8 +105,9 @@ const H2 = styled.h2`
 const Basket = styled.div`
   margin-bottom: 2em;
 
-  @media only screen and (min-width: 700px) {
+  @media only screen and (min-width: 800px) {
     display: flex;
+    justify-content: baseline;
   }
 `;
 

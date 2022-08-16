@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import photo from "../assets/pexels-olena-bohovyk-3323687.jpeg";
+import { FadeIn } from "../helpers/FadeIn";
 
 const Homepage = () => {
   let navigate = useNavigate();
@@ -12,11 +13,13 @@ const Homepage = () => {
   };
   return (
     <Background>
-      <Main>
-        <Title>PriceSimple</Title>
-        <Text>Find the best prices on produce at your local grocery store</Text>
-        <Button onClick={onClickFunc}>Search produce</Button>
-      </Main>
+      <FadeIn>
+        <Main>
+          <Title>PriceSimple</Title>
+          <Text>Find the best prices on produce at your local grocery store</Text>
+          <Button onClick={onClickFunc}>Search produce</Button>
+        </Main>
+      </FadeIn>
     </Background>
   );
 };
@@ -32,8 +35,9 @@ const Background = styled.div`
   background-image: url(${photo});
   background-size: cover;
   color: var(--color-header);
-  /* background: rgb(108, 186, 187);
-  background: linear-gradient(326deg, rgba(108, 186, 187, 1) 0%, rgba(129, 57, 237, 1) 100%); */
+  @media only screen and (min-width: 800px) {
+    background-position: 30% 20%;
+  }
 `;
 
 const Main = styled.div`

@@ -1,17 +1,17 @@
 import styled from "styled-components";
 
-// import Divider from "../components/Divider";
 import SearchBar from "../components/SearchBar";
 import bowl from "../assets/edited_bowl.png";
+import { FadeIn } from "../helpers/FadeIn";
 
 const SearchPage = () => {
   return (
     <Background>
       <Title>{"What's on your list?".toUpperCase()}</Title>
-      {/* <Divider /> */}
       <SearchBar />
-      <Image />
-      <Image src={bowl} />
+      <FadeIn duration={2000}>
+        <Image src={bowl} />
+      </FadeIn>
     </Background>
   );
 };
@@ -23,7 +23,7 @@ const Background = styled.div`
   width: 100%;
   height: 100%;
   background: rgb(255, 255, 255);
-  background: linear-gradient(0deg, rgba(255, 255, 255, 1) 0%, rgba(132, 116, 209, 1) 100%);
+  background: linear-gradient(0deg, rgba(255, 255, 255, 1) 0%, rgba(8, 87, 0, 1) 89%);
   color: white;
   display: flex;
   flex-direction: column;
@@ -43,4 +43,9 @@ const Image = styled.img`
   top: 80%;
   width: 100%;
   z-index: -1;
+  @media only screen and (min-width: 800px) {
+    width: 50%;
+    top: 30%;
+    left: 70%;
+  }
 `;

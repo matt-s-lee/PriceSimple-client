@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import { ProductContext } from "../../context/ProductContext";
+import { FadeIn } from "../../helpers/FadeIn";
 // import { findMatch, handleSelect, keyChangeFunc } from "./helpers";
 
 const SearchBar = () => {
@@ -94,6 +95,9 @@ const Input = styled.input`
   width: calc(100% - 2em);
   z-index: 2;
   font-family: var(--font-titles);
+  @media only screen and (min-width: 800px) {
+    width: 50%;
+  }
 `;
 
 const Results = styled.ul`

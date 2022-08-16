@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { BsSearch } from "react-icons/bs";
+import { FadeIn } from "../helpers/FadeIn";
 
 const SearchButton = () => {
   const navigate = useNavigate();
@@ -10,11 +11,11 @@ const SearchButton = () => {
   };
 
   return (
-    <>
+    <FadeIn>
       <Search onClick={handleClick}>
         <BsSearch />
       </Search>
-    </>
+    </FadeIn>
   );
 };
 

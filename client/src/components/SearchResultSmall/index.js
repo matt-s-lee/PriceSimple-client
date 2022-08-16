@@ -104,7 +104,11 @@ const Card = styled.div`
   font-family: "Roboto", sans-serif;
 
   @media only screen and (min-width: 800px) {
-    width: 30%;
+    width: 30vw;
+  }
+
+  @media only screen and (min-width: 1280px) {
+    width: 32%;
   }
 `;
 
