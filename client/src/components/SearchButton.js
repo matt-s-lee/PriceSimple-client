@@ -31,9 +31,10 @@ const Search = styled.div`
   left: calc(100vw - 2.5em);
   background: rgba(0, 0, 0, 0.5);
   color: white;
-  transition: all 0.2s ease-in;
+  transition: all 0.2s cubic-bezier(0.075, 0.82, 0.165, 1);
   &:hover {
     background: black;
+    transform: scale(1.1);
   }
 `;
 

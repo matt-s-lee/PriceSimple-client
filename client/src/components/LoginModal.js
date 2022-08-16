@@ -52,6 +52,9 @@ const Dialog = styled.div`
   z-index: 2;
   margin: 0 5em;
   padding: 1em;
+  @media only screen and (min-width: 800px) {
+    left: 23%;
+  }
 `;
 
 const Text = styled.div`

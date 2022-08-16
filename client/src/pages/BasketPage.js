@@ -78,12 +78,12 @@ const BasketPage = () => {
     return visible ? (
       <LoginModal visible={visible} setVisible={setVisible} />
     ) : (
-      <>
+      <Background>
         <EmptyMsg>
           Your basket is <em>empty</em>
         </EmptyMsg>
         <SearchButton />
-      </>
+      </Background>
     );
   }
 };
@@ -117,10 +117,15 @@ const EmptyMsg = styled.div`
   justify-content: center;
   align-items: center;
   height: 15em;
+  color: white;
 `;
 
 const EmptyStoreMsg = styled(EmptyMsg)`
   height: 2em;
+  color: black;
+  @media only screen and (min-width: 800px) {
+    margin-left: 2em;
+  }
 `;
 
 const Button = styled.button`
@@ -128,4 +133,8 @@ const Button = styled.button`
   margin-top: 1em;
 `;
 
+const Background = styled.div`
+  background: black;
+  height: 100vh;
+`;
 export default BasketPage;
