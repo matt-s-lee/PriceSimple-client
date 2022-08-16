@@ -12,7 +12,7 @@ import LogoutButton from "./LogoutButton";
 import { useAuth0 } from "@auth0/auth0-react";
 
 const Header = () => {
-  const { user, isAuthenticated, isLoading } = useAuth0();
+  const { isAuthenticated, isLoading } = useAuth0();
 
   const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();

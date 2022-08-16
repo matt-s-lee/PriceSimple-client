@@ -17,7 +17,7 @@ const Homepage = () => {
         <Main>
           <Title>PriceSimple</Title>
           <Text>Find the best prices on produce at your local grocery store</Text>
-          <Button onClick={onClickFunc}>Search produce</Button>
+          <Button onClick={onClickFunc}>Search the latest produce</Button>
         </Main>
       </FadeIn>
     </Background>

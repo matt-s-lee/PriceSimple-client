@@ -4,19 +4,18 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import { ProductContext } from "../../context/ProductContext";
-import { FadeIn } from "../../helpers/FadeIn";
 // import { findMatch, handleSelect, keyChangeFunc } from "./helpers";
 
 const SearchBar = () => {
   const {
     state,
-    actions: { setSearchMatches },
+    actions: { setSearchMatches, setSingleMatch },
   } = useContext(ProductContext);
   const allProducts = state.allProducts;
   const matches = state.searchMatches;
 
   const [typed, setTyped] = useState("");
-  const [matchIndex, setMatchIndex] = useState(0);
+  const [matchIndex, setMatchIndex] = useState(-1);
   console.log(matchIndex);
 
   let navigate = useNavigate();
@@ -35,8 +34,17 @@ const SearchBar = () => {
 
   const handleSelect = (ev, index) => {
     ev.preventDefault();
-    if (matchIndex === 0) {
+    // setMatchIndex(index);
+    if (matchIndex === -1 && window.location.pathname === "/search") {
       navigate("/results");
+      setTyped("");
+    } else if (matchIndex >= matches.length) {
+      const match = matches[matches.length - 1]; // return the last one
+      setSingleMatch({ match });
+      setTyped("");
+    } else {
+      const match = matches[index];
+      setSingleMatch({ match });
       setTyped("");
     }
   };
@@ -46,13 +54,21 @@ const SearchBar = () => {
       <Background typed={typed}></Background>
       <Input
         type="text"
-        placeholder="Type here"
+        placeholder="What's on the list?"
         value={typed}
         onChange={(ev) => setTyped(ev.target.value)}
         onKeyDown={(ev) => {
           switch (ev.key) {
             case "Enter": {
               handleSelect(ev, matchIndex);
+              return;
+            }
+            case "ArrowUp": {
+              setMatchIndex(matchIndex - 1);
+              return;
+            }
+            case "ArrowDown": {
+              setMatchIndex(matchIndex + 1);
               return;
             }
             default: {
@@ -68,8 +84,19 @@ const SearchBar = () => {
           </>
         )}
         {matches &&
-          matches.map((match) => {
-            return <li key={match._id}>{match.product_name}</li>;
+          matches.map((match, index) => {
+            return (
+              <li
+                key={match._id}
+                style={{
+                  background:
+                    matchIndex === index ? "hsla(50deg, 100%, 80%, 0.25)" : "transparent",
+                }}
+                onClick={(ev) => handleSelect(ev, index)}
+              >
+                {match.product_name}
+              </li>
+            );
           })}
       </Results>
     </>
@@ -104,7 +131,7 @@ const Results = styled.ul`
   margin: 1.5em 0 0 1.5em;
   width: calc(100% - 3em);
   overflow: hidden;
-  max-height: 30em;
+  max-height: 20em;
   z-index: 2;
   background: transparent;
 `;

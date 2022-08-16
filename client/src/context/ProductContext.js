@@ -8,6 +8,7 @@ const initialState = {
   allProducts: null,
   searchMatches: null,
   searchTerm: null,
+  selectedProduct: null,
 };
 
 const reducer = (state, action) => {
@@ -25,6 +26,11 @@ const reducer = (state, action) => {
         ...state,
         searchMatches: action.matches,
         searchTerm: action.searchTerm,
+      };
+    case "set-single-match":
+      return {
+        ...state,
+        selectedProduct: action.match,
       };
     default:
       throw new Error(`Unrecognized action: ${action.type}`);
@@ -51,9 +57,16 @@ export const ProductContextProvider = ({ children }) => {
     });
   };
 
+  const setSingleMatch = (data) => {
+    dispatch({
+      type: "set-single-match",
+      match: data.match,
+    });
+  };
+
   return (
     <ProductContext.Provider
-      value={{ state, actions: { receiveProductData, setSearchMatches } }}
+      value={{ state, actions: { receiveProductData, setSearchMatches, setSingleMatch } }}
     >
       {children}
     </ProductContext.Provider>

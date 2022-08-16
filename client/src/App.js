@@ -9,6 +9,7 @@ import SearchPage from "./pages/SearchPage";
 import ProfilePage from "./pages/ProfilePage";
 import BasketPage from "./pages/BasketPage";
 import ResultPage from "./pages/ResultPage";
+import ComparePage from "./pages/ComparePage";
 import Header from "./components/Header";
 import { ProductContext } from "./context/ProductContext";
 import { UserContext } from "./context/UserContext";
@@ -71,7 +72,7 @@ const App = () => {
         <Route exact path="/results" element={<ResultPage />} />
         <Route exact path="/basket" element={<BasketPage />} />
         <Route exact path="/profile" element={<ProfilePage />} />
-        {/* <Route exact path="/profile/:userId" element={<ProfilePage />} /> */}
+        <Route exact path="/compare" element={<ComparePage />} />
         <Route exact path="">
           404
         </Route>

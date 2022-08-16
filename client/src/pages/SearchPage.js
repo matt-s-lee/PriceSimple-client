@@ -7,7 +7,7 @@ import { FadeIn } from "../helpers/FadeIn";
 const SearchPage = () => {
   return (
     <Background>
-      <Title>{"What's on your list?".toUpperCase()}</Title>
+      <Title>{"This week's prices for:".toUpperCase()}</Title>
       <SearchBar />
       <FadeIn duration={2000}>
         <Image src={bowl} />
@@ -18,7 +18,7 @@ const SearchPage = () => {
 
 export default SearchPage;
 
-const Background = styled.div`
+export const Background = styled.div`
   position: fixed;
   width: 100%;
   height: 100%;
@@ -30,7 +30,7 @@ const Background = styled.div`
   align-items: left;
 `;
 
-const Title = styled.h2`
+export const Title = styled.h2`
   margin: 2em 0 1em 0;
   font-weight: 100;
   font-size: 30px;
@@ -38,7 +38,7 @@ const Title = styled.h2`
   /* letter-spacing: 2px; */
 `;
 
-const Image = styled.img`
+export const Image = styled.img`
   position: fixed;
   top: 80%;
   width: 100%;
