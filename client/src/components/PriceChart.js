@@ -33,7 +33,7 @@ const PriceChart = ({ product, dataset }) => {
         ticks: {
           // Include a dollar sign in the ticks
           callback: function (value, index, ticks) {
-            return "$" + value;
+            return "$" + value.toFixed(2);
           },
         },
       },
@@ -45,15 +45,15 @@ const PriceChart = ({ product, dataset }) => {
       {
         label: product,
         data: dataset,
-        borderColor: "rgb(255, 99, 132)",
-        backgroundColor: "rgba(255, 99, 132, 0.5)",
+        borderColor: "lightgrey",
+        backgroundColor: "#828282",
       },
     ],
   };
 
   return (
     <Wrapper>
-      <Line options={options} data={data} />;
+      <Line options={options} data={data} />
     </Wrapper>
   );
 };
@@ -61,5 +61,8 @@ const PriceChart = ({ product, dataset }) => {
 const Wrapper = styled.div`
   height: 40vh;
   width: 80vw;
+  position: fixed;
+  top: 50%;
+  align-self: center;
 `;
 export default PriceChart;

@@ -124,7 +124,6 @@ const Image = styled.img`
 const Column = styled.div`
   display: flex;
   flex-direction: column;
-  font-family: "Jost", sans-serif;
   width: 25%;
 `;
 

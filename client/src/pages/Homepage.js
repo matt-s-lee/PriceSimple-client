@@ -71,7 +71,8 @@ const Button = styled.button`
   border-radius: 8px;
   /* margin-top: 2em; */
   top: 75vh;
-  padding: 0.4em 1em;
+  padding: 0.6em 1em;
   background: var(--color-button);
+  font-family: "Josefin Slab", serif;
   align-self: center;
 `;

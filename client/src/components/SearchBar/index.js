@@ -42,10 +42,12 @@ const SearchBar = () => {
       const match = matches[matches.length - 1]; // return the last one
       setSingleMatch({ match });
       setTyped("");
+      setMatchIndex(-1);
     } else {
       const match = matches[index];
       setSingleMatch({ match });
       setTyped("");
+      setMatchIndex(-1);
     }
   };
 
@@ -116,7 +118,7 @@ const Background = styled.div`
 
 const Input = styled.input`
   border: 1px solid grey;
-  border-radius: 3px;
+  border-radius: 10px;
   margin-left: 1em;
   line-height: 2em;
   width: calc(100% - 2em);

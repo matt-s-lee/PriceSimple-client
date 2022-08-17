@@ -8,13 +8,13 @@ import { ProductContext } from "../context/ProductContext";
 
 import corn from "../assets/pexels-mali-maeder-547263-removebg-preview.png";
 
-import { Background, Image, Title } from "./SearchPage"; // styled-components
+import { Background } from "./SearchPage"; // styled-components
 import PriceChart from "../components/PriceChart";
 
 const ComparePage = () => {
   const {
     state,
-    actions: { setMatchesOverTime },
+    actions: { setSingleMatch, setMatchesOverTime },
   } = useContext(ProductContext);
   const selectedProduct = state.selectedProduct;
   const matchesToCompare = state.matchesOverTime;
@@ -44,25 +44,13 @@ const ComparePage = () => {
             return parseFloat(match["sold_individually"]["price_per_item"]);
           })
         );
-      } else if (productType === "sold_by_weight") {
+      } else {
         setPrices(
           matchesToCompare.map((match) => {
             return parseFloat(match["sold_by_weight"]["price_per_lb"]);
           })
         );
       }
-      //     if (matchesToCompare) {
-      //       prices = matchesToCompare.map((match) => {
-      //         if (match.sold_by_package) {
-      //           return match.sold_by_package.price_per_package;
-      //         } else if (match.sold_individually) {
-      //           return match.sold_individually.price_per_item;
-      //         } else {
-      //           return match.sold_by_weight.price_per_lb;
-      //         }
-      //       });
-      //       console.log(prices);
-      //     }
     }
   }, [matchesToCompare]);
 
@@ -74,6 +62,7 @@ const ComparePage = () => {
         .then((json) => {
           const matches = json.data;
           setMatchesOverTime({ matches });
+          setSingleMatch({ match: null });
         });
     }
   };
@@ -82,10 +71,10 @@ const ComparePage = () => {
     <Wrapper>
       <Title>{"Compare prices over time".toUpperCase()}</Title>
       <SearchBar />
-      {selectedProduct && <div>Selected product: {selectedProduct.product_name}</div>}
-      {selectedProduct && <button onClick={handleClick}>Search</button>}
+      {selectedProduct && <Result>Selected product: {selectedProduct.product_name}</Result>}
+      {selectedProduct && <Button onClick={handleClick}>Search</Button>}
       {matchesToCompare && (
-        <PriceChart product={selectedProduct.product_name} dataset={prices} />
+        <PriceChart product={matchesToCompare[0].product_name} dataset={prices} />
       )}
       <FadeIn duration={2000}>
         <Image src={corn} />
@@ -95,7 +84,33 @@ const ComparePage = () => {
 };
 
 const Wrapper = styled(Background)`
+  align-items: center;
   background: rgb(255, 255, 255);
   background: linear-gradient(0deg, rgba(255, 255, 255, 1) 0%, rgba(58, 127, 0, 1) 89%);
 `;
+
+const Title = styled.h2`
+  margin: 2em 0 1em 0;
+  font-weight: 100;
+`;
+
+const Result = styled.div``;
+
+const Button = styled.button`
+  margin-top: 1em;
+`;
+
+const Image = styled.img`
+  position: fixed;
+  top: 80%;
+  left: 0;
+  width: 100%;
+  z-index: -1;
+  @media only screen and (min-width: 800px) {
+    width: 50%;
+    top: 30%;
+    left: 70%;
+  }
+`;
+
 export default ComparePage;
