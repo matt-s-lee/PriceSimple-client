@@ -18,9 +18,7 @@ const ComparePage = () => {
   } = useContext(ProductContext);
   const selectedProduct = state.selectedProduct;
   const matchesToCompare = state.matchesOverTime;
-  console.log(matchesToCompare);
   const [prices, setPrices] = useState([]);
-  console.log(prices);
 
   const productTypeByValue = (object, value) => {
     return Object.keys(object).find((key) => object[key]["is"] === value);
@@ -28,10 +26,7 @@ const ComparePage = () => {
 
   useEffect(() => {
     if (matchesToCompare) {
-      console.log(matchesToCompare[0]["sold_by_weight"]["price_per_lb"]);
-
       const productType = productTypeByValue(matchesToCompare[0], true);
-      console.log(productType);
       if (productType === "sold_by_package") {
         setPrices(
           matchesToCompare.map((match) => {

@@ -19,7 +19,6 @@ const BasketPage = () => {
     actions: { updateUserCart },
   } = useContext(UserContext);
   const userCart = state.userCart;
-  console.log(userCart);
   const [visible, setVisible] = useState(true);
   const [remove] = useState(true);
   const navigate = useNavigate();

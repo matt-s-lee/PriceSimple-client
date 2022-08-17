@@ -13,7 +13,6 @@ const initialState = {
 };
 
 const reducer = (state, action) => {
-  console.log("action", action);
   switch (action.type) {
     case "receive-product-data":
       return {
@@ -47,7 +46,6 @@ export const ProductContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const receiveProductData = (data) => {
-    // console.log("data in func", data);
     dispatch({
       type: "receive-product-data",
       igaData: data[0],

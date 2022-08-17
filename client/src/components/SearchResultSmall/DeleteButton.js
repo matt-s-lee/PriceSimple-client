@@ -25,7 +25,6 @@ const DeleteButton = ({ id }) => {
       })
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
           getUserCart(user.sub, updateUserCart);
         });
     }

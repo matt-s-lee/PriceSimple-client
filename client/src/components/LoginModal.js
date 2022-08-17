@@ -6,7 +6,6 @@ import styled from "styled-components";
 
 const LoginModal = ({ visible, setVisible }) => {
   const { loginWithRedirect } = useAuth0();
-  console.log(visible);
 
   const handleExit = (ev) => {
     ev.preventDefault();

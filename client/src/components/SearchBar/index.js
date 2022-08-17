@@ -16,7 +16,6 @@ const SearchBar = () => {
 
   const [typed, setTyped] = useState("");
   const [matchIndex, setMatchIndex] = useState(-1);
-  console.log(matchIndex);
 
   let navigate = useNavigate();
 

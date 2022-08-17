@@ -22,7 +22,6 @@ ChartJS.register(
 );
 
 const PriceChart = ({ product, dataset }) => {
-  console.log(dataset);
   const labels = ["2022-08-04", "2022-08-11"];
   const options = {
     responsive: true,

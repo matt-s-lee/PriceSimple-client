@@ -13,16 +13,6 @@ const ChangeQuantityButton = ({ numItems, setNumItems, remove, id }) => {
     operation === "add" ? setNumItems(numItems + 1) : setNumItems(numItems - 1);
   };
 
-  // useEffect(() => {
-  //   if (remove) {
-  //     const match = userCart.filter((item) => {
-  //       return item.productId === id;
-  //     });
-  //     console.log(match.quantity);
-  //     setQuantity(match[0].quantity);
-  //   }
-  // }, [setQuantity]);
-
   return (
     <Wrapper>
       <Button disabled={numItems < 1} onClick={onClickFunc}>

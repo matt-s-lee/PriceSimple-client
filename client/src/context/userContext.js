@@ -21,7 +21,6 @@ const reducer = (state, action) => {
 export const UserContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const updateUserCart = (data) => {
-    console.log(data);
     dispatch({
       type: "update-user-cart",
       cart: data,
@@ -34,22 +33,3 @@ export const UserContextProvider = ({ children }) => {
     </UserContext.Provider>
   );
 };
-
-// case "receive-user-data":
-//   return {
-//     ...state,
-//     currentUser: action.user,
-//     authenticated: action.isAuthenticated,
-//     stillLoading: action.isLoading,
-//   };
-
-// SET currentUser to authenticated user
-// const receiveUserData = (user, isAuthenticated, isLoading) => {
-//   console.log("data in func", user, isAuthenticated, isLoading);
-//   dispatch({
-//     type: "receive-user-data",
-//     user,
-//     isAuthenticated,
-//     isLoading,
-//   });
-// };

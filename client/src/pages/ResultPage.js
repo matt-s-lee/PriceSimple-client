@@ -12,7 +12,6 @@ const ResultPage = () => {
   const [add] = useState(true);
 
   if (matches) {
-    console.log("matches", matches);
     return (
       <>
         <Title>

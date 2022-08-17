@@ -38,7 +38,6 @@ const App = () => {
       },
     });
     const fetchedUser = await response.json();
-    console.log(fetchedUser);
   };
 
   useEffect(
@@ -82,35 +81,3 @@ const App = () => {
 };
 
 export default App;
-
-// const LayoutWrapper = ({ Component }) => {
-//   return (
-//     <Header>
-//       <Component />
-//     </Header>
-//   );
-// };
-//         {/* <Route exact path="/search" element={<LayoutWrapper Component={SearchPage} />} /> */}
-
-// useEffect(() => {
-//   receiveUserData(user, isAuthenticated, isLoading);
-//   if (isAuthenticated) {
-//     console.log("hello");
-//     fetch(`/profile/${user.sub}`, {
-//       method: "POST",
-//       body: JSON.stringify({
-//         _id: user.sub,
-//         email: user.email,
-//         name: user.name,
-//         picture: user.picture,
-//       }),
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-//     })
-//       .then((res) => res.json())
-//       .then((data) => {
-//         console.log("message", data.message);
-//       });
-//   }
-// }, [isAuthenticated, user]);
