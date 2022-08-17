@@ -37,6 +37,9 @@ const SearchBar = () => {
     if (matchIndex === -1 && window.location.pathname === "/search") {
       navigate("/results");
       setTyped("");
+    } else if (window.location.pathname === "/search") {
+      window.open(matches[index].link, "_blank").focus();
+      setMatchIndex(-1);
     } else if (matchIndex >= matches.length) {
       const match = matches[matches.length - 1]; // return the last one
       setSingleMatch({ match });
@@ -81,7 +84,11 @@ const SearchBar = () => {
       <Results>
         {matches && matches.length > 0 && (
           <>
-            <Examples>Maybe you're looking for...</Examples>
+            <Examples>
+              {window.location.pathname === "/search"
+                ? "Search all or select product to go to grocery store page"
+                : "Are you looking for..."}
+            </Examples>
           </>
         )}
         {matches &&
@@ -113,6 +120,7 @@ const Background = styled.div`
   width: 100%;
   opacity: 0.4;
   background: black;
+  z-index: 3;
 `;
 
 const Input = styled.input`
@@ -121,8 +129,10 @@ const Input = styled.input`
   margin-left: 1em;
   line-height: 2em;
   width: calc(100% - 2em);
-  z-index: 2;
-  font-family: var(--font-titles);
+  z-index: 4;
+  /* font-family: var(--font-titles); */
+  /* font-family: "Josefin Slab", sans-serif; */
+
   @media only screen and (min-width: 800px) {
     width: 50%;
   }
@@ -132,13 +142,14 @@ const Results = styled.ul`
   margin: 1.5em 0 0 1.5em;
   width: calc(100% - 3em);
   overflow: hidden;
-  max-height: 20em;
-  z-index: 2;
+  max-height: 20.5em;
+  z-index: 4;
   background: transparent;
 `;
 
 const Examples = styled.li`
   font-weight: 600;
+  margin-bottom: 0.5em;
 `;
 
 

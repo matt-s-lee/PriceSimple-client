@@ -36,6 +36,7 @@ export const Title = styled.h2`
   font-size: 2em;
   align-self: center;
   /* letter-spacing: 2px; */
+  font-family: "Josefin Slab", sans-serif;
 `;
 
 const Image = styled.img`

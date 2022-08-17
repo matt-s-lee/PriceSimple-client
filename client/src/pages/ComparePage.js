@@ -87,6 +87,7 @@ const Wrapper = styled(Background)`
 const Title = styled.h2`
   margin: 2em 0 1em 0;
   font-weight: 100;
+  font-family: "Josefin Slab", sans-serif;
 `;
 
 const Result = styled.div``;
