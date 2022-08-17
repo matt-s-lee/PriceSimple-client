@@ -98,9 +98,14 @@ const Title = styled.h2`
   font-family: "Josefin Slab", sans-serif;
 `;
 
-const Result = styled.div``;
+const Result = styled.div`
+  position: fixed;
+  top: 15em;
+`;
 
 const Button = styled.button`
+  position: fixed;
+  top: 17em;
   margin-top: 1em;
 `;
 

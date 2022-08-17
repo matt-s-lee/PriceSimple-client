@@ -41,6 +41,16 @@ const PriceChart = ({ product, dataset, yAxis }) => {
         },
       },
     },
+    plugins: {
+      legend: {
+        labels: {
+          font: {
+            family: "'Jost', sans-serif",
+            weight: "600",
+          },
+        },
+      },
+    },
   };
   const data = {
     labels,
