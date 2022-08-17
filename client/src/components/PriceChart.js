@@ -21,13 +21,17 @@ ChartJS.register(
   Legend
 );
 
-const PriceChart = ({ product, dataset }) => {
+const PriceChart = ({ product, dataset, yAxis }) => {
   const labels = ["2022-08-04", "2022-08-11"];
   const options = {
     responsive: true,
     maintainAspectRatio: false,
     scales: {
       y: {
+        title: {
+          display: true,
+          text: yAxis,
+        },
         beginAtZero: true,
         ticks: {
           // Include a dollar sign in the ticks

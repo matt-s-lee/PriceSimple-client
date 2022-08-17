@@ -19,6 +19,7 @@ const ComparePage = () => {
   const selectedProduct = state.selectedProduct;
   const matchesToCompare = state.matchesOverTime;
   const [prices, setPrices] = useState([]);
+  const [unitType, setUnitType] = useState("");
 
   const productTypeByValue = (object, value) => {
     return Object.keys(object).find((key) => object[key]["is"] === value);
@@ -33,18 +34,21 @@ const ComparePage = () => {
             return parseFloat(match["sold_by_package"]["price_per_package"]);
           })
         );
+        setUnitType("Price per package");
       } else if (productType === "sold_individually") {
         setPrices(
           matchesToCompare.map((match) => {
             return parseFloat(match["sold_individually"]["price_per_item"]);
           })
         );
+        setUnitType("Price per item");
       } else {
         setPrices(
           matchesToCompare.map((match) => {
             return parseFloat(match["sold_by_weight"]["price_per_lb"]);
           })
         );
+        setUnitType("Price per lb");
       }
     }
   }, [matchesToCompare]);
@@ -69,7 +73,11 @@ const ComparePage = () => {
       {selectedProduct && <Result>Selected product: {selectedProduct.product_name}</Result>}
       {selectedProduct && <Button onClick={handleClick}>Search</Button>}
       {matchesToCompare && (
-        <PriceChart product={matchesToCompare[0].product_name} dataset={prices} />
+        <PriceChart
+          product={matchesToCompare[0].product_name}
+          dataset={prices}
+          yAxis={unitType}
+        />
       )}
       <FadeIn duration={2000}>
         <Image src={corn} />
