@@ -9,6 +9,7 @@ const initialState = {
   searchMatches: null,
   searchTerm: null,
   selectedProduct: null,
+  matchesOverTime: null,
 };
 
 const reducer = (state, action) => {
@@ -32,6 +33,11 @@ const reducer = (state, action) => {
         ...state,
         selectedProduct: action.match,
       };
+    case "set-matches-over-time":
+      return {
+        ...state,
+        matchesOverTime: action.matchesOverTime,
+      };
     default:
       throw new Error(`Unrecognized action: ${action.type}`);
   }
@@ -48,7 +54,6 @@ export const ProductContextProvider = ({ children }) => {
       metroData: data[1],
     });
   };
-
   const setSearchMatches = (data) => {
     dispatch({
       type: "set-search-matches",
@@ -56,17 +61,25 @@ export const ProductContextProvider = ({ children }) => {
       searchTerm: data.typed,
     });
   };
-
   const setSingleMatch = (data) => {
     dispatch({
       type: "set-single-match",
       match: data.match,
     });
   };
+  const setMatchesOverTime = (data) => {
+    dispatch({
+      type: "set-matches-over-time",
+      matchesOverTime: data.matches,
+    });
+  };
 
   return (
     <ProductContext.Provider
-      value={{ state, actions: { receiveProductData, setSearchMatches, setSingleMatch } }}
+      value={{
+        state,
+        actions: { receiveProductData, setSearchMatches, setSingleMatch, setMatchesOverTime },
+      }}
     >
       {children}
     </ProductContext.Provider>
