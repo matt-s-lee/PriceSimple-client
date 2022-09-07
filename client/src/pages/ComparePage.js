@@ -20,11 +20,14 @@ const ComparePage = () => {
   const matchesToCompare = state.matchesOverTime;
   const [prices, setPrices] = useState([]);
   const [unitType, setUnitType] = useState("");
+  console.log(prices, "prices");
 
+  // FIND product type (e.g. sold individually, by package)
   const productTypeByValue = (object, value) => {
     return Object.keys(object).find((key) => object[key]["is"] === value);
   };
 
+  // PARSE and SET data retrieved for one product
   useEffect(() => {
     if (matchesToCompare) {
       const productType = productTypeByValue(matchesToCompare[0], true);
@@ -53,6 +56,7 @@ const ComparePage = () => {
     }
   }, [matchesToCompare]);
 
+  // RETRIEVE data for one product over multiple weeks
   const handleClick = (ev) => {
     ev.preventDefault();
     if (selectedProduct) {
@@ -69,7 +73,7 @@ const ComparePage = () => {
   return (
     <Wrapper>
       <Title>{"Compare prices over time".toUpperCase()}</Title>
-      <SearchBar />
+      <SearchBar metroOnly={true} />
       {selectedProduct && <Result>Selected product: {selectedProduct.product_name}</Result>}
       {selectedProduct && <Button onClick={handleClick}>Search</Button>}
       {matchesToCompare && (
@@ -84,7 +88,7 @@ const ComparePage = () => {
       </FadeIn>
     </Wrapper>
   );
-};
+};;;;
 
 const Wrapper = styled(Background)`
   align-items: center;

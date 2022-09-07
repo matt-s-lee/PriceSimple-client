@@ -22,7 +22,7 @@ ChartJS.register(
 );
 
 const PriceChart = ({ product, dataset, yAxis }) => {
-  const labels = ["2022-08-04", "2022-08-11"];
+  const labels = ["2022-08-04", "2022-08-11", "2022-08-18"];
   const options = {
     responsive: true,
     maintainAspectRatio: false,

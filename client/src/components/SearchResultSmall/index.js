@@ -21,11 +21,11 @@ const SearchResultSmall = ({
 }) => {
   const [numItems, setNumItems] = useState(1);
 
-  const showLogo = (store) => {
+  const showLogo = (store, url) => {
     if (store === "iga") {
-      return <VoilaLink />;
+      return <VoilaLink onClick={() => window.open(url, "_blank").focus()} />;
     } else {
-      return <MetroLink />;
+      return <MetroLink onClick={() => window.open(url, "_blank").focus()} />;
     }
   };
 
@@ -38,13 +38,13 @@ const SearchResultSmall = ({
         <Product>{product}</Product>
         {soldIndividually.is === true && (
           <>
-            <a href={link}>{showLogo(store)}</a>
+            <div>{showLogo(store, link)}</div>
             <div>${soldIndividually.price_per_item}</div>
           </>
         )}
         {soldByPackage.is === true && (
           <>
-            <a href={link}>{showLogo(store)}</a>
+            <div>{showLogo(store, link)}</div>
             <div>${soldByPackage.price_per_package}</div>
             {soldByPackage.price_per_100g && (
               <SmallFont>${soldByPackage.price_per_100g}/100g</SmallFont>
@@ -54,7 +54,7 @@ const SearchResultSmall = ({
         )}
         {soldByWeight.is === true && (
           <>
-            <a href={link}>{showLogo(store)}</a>
+            <div>{showLogo(store, link)}</div>
             <div>${soldByWeight.price_per_lb}/lb</div>
             <SmallFont>${soldByWeight.price_per_kg}/kg</SmallFont>
             <SmallFont>${(soldByWeight.price_per_kg / 10).toFixed(2)}/100g</SmallFont>
@@ -150,10 +150,12 @@ const Cart = styled.div`
 
 const VoilaLink = styled(VoilaLogo)`
   height: 1em;
+  cursor: pointer;
 `;
 
 const MetroLink = styled(MetroLogo)`
   height: 1em;
+  cursor: pointer;
 `;
 
 const SmallFont = styled.div`

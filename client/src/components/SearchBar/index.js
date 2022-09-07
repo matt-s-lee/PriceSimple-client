@@ -6,7 +6,7 @@ import styled from "styled-components";
 import { ProductContext } from "../../context/ProductContext";
 // import { findMatch, handleSelect, keyChangeFunc } from "./helpers";
 
-const SearchBar = () => {
+const SearchBar = (metroOnly) => {
   const {
     state,
     actions: { setSearchMatches, setSingleMatch },
@@ -20,7 +20,16 @@ const SearchBar = () => {
   let navigate = useNavigate();
 
   useEffect(() => {
-    if (allProducts) {
+    if (allProducts && metroOnly) {
+      const searchMatches = allProducts.filter((product) => {
+        return (
+          product.product_name.toUpperCase().includes(typed.toUpperCase()) &&
+          typed.length >= 2 &&
+          product.store === "metro"
+        );
+      });
+      setSearchMatches({ searchMatches, typed });
+    } else if (allProducts) {
       const searchMatches = allProducts.filter((product) => {
         return (
           product.product_name.toUpperCase().includes(typed.toUpperCase()) && typed.length >= 2
@@ -86,7 +95,7 @@ const SearchBar = () => {
           <>
             <Examples>
               {window.location.pathname === "/search"
-                ? "Search all or select product to go to grocery store page"
+                ? "Hit enter to view all or use arrow keys to select specific product"
                 : "Are you looking for..."}
             </Examples>
           </>
