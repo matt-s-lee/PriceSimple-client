@@ -19,7 +19,7 @@ const LoginModal = ({ visible, setVisible }) => {
         <IoClose onClick={handleExit} />
         <Text>
           Only members can add items to the cart! Please{" "}
-          <button onClick={() => loginWithRedirect()}>sign-in or sign-up</button>
+          <Button onClick={() => loginWithRedirect()}>sign-in or sign-up</Button>
         </Text>
       </Dialog>
     </>
@@ -59,6 +59,10 @@ const Dialog = styled.div`
 const Text = styled.div`
   text-align: center;
   padding: 1em;
+`;
+
+const Button = styled.button`
+  text-decoration: underline;
 `;
 
 export default LoginModal;

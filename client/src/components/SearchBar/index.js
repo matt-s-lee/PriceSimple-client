@@ -6,14 +6,13 @@ import styled from "styled-components";
 import { ProductContext } from "../../context/ProductContext";
 // import { findMatch, handleSelect, keyChangeFunc } from "./helpers";
 
-const SearchBar = (metroOnly) => {
+const SearchBar = ({ metroOnly }) => {
   const {
     state,
     actions: { setSearchMatches, setSingleMatch },
   } = useContext(ProductContext);
   const allProducts = state.allProducts;
   const matches = state.searchMatches;
-
   const [typed, setTyped] = useState("");
   const [matchIndex, setMatchIndex] = useState(-1);
 
@@ -42,8 +41,7 @@ const SearchBar = (metroOnly) => {
 
   const handleSelect = (ev, index) => {
     ev.preventDefault();
-    // setMatchIndex(index);
-    if (matchIndex === -1 && window.location.pathname === "/search") {
+    if (index === -1 && window.location.pathname === "/search") {
       navigate("/results");
       setTyped("");
     } else if (window.location.pathname === "/search") {
@@ -134,13 +132,15 @@ const Background = styled.div`
 
 const Input = styled.input`
   border: 1px solid grey;
-  border-radius: 10px;
+  border-radius: 4px;
   margin-left: 1em;
   line-height: 2em;
   width: calc(100% - 2em);
   z-index: 4;
-  /* font-family: var(--font-titles); */
-  /* font-family: "Josefin Slab", sans-serif; */
+
+  &:focus {
+    outline: none;
+  }
 
   @media only screen and (min-width: 800px) {
     width: 50%;

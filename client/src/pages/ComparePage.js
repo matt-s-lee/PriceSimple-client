@@ -20,7 +20,7 @@ const ComparePage = () => {
   const matchesToCompare = state.matchesOverTime;
   const [prices, setPrices] = useState([]);
   const [unitType, setUnitType] = useState("");
-  console.log(prices, "prices");
+  console.log(selectedProduct);
 
   // FIND product type (e.g. sold individually, by package)
   const productTypeByValue = (object, value) => {
@@ -33,9 +33,13 @@ const ComparePage = () => {
       const productType = productTypeByValue(matchesToCompare[0], true);
       if (productType === "sold_by_package") {
         setPrices(
-          matchesToCompare.map((match) => {
-            return parseFloat(match["sold_by_package"]["price_per_package"]);
-          })
+          matchesToCompare
+            .filter((match) => {
+              return match !== null;
+            })
+            .map((match) => {
+              return parseFloat(match["sold_by_package"]["price_per_package"]);
+            })
         );
         setUnitType("Price per package");
       } else if (productType === "sold_individually") {
@@ -74,7 +78,11 @@ const ComparePage = () => {
     <Wrapper>
       <Title>{"Compare prices over time".toUpperCase()}</Title>
       <SearchBar metroOnly={true} />
-      {selectedProduct && <Result>Selected product: {selectedProduct.product_name}</Result>}
+      {selectedProduct && (
+        <Result>
+          Selected product: <ProductName>{selectedProduct.product_name}</ProductName>
+        </Result>
+      )}
       {selectedProduct && <Button onClick={handleClick}>Search</Button>}
       {matchesToCompare && (
         <PriceChart
@@ -88,7 +96,7 @@ const ComparePage = () => {
       </FadeIn>
     </Wrapper>
   );
-};;;;
+};
 
 const Wrapper = styled(Background)`
   align-items: center;
@@ -99,18 +107,28 @@ const Wrapper = styled(Background)`
 const Title = styled.h2`
   margin: 2em 0 1em 0;
   font-weight: 100;
-  font-family: "Josefin Slab", sans-serif;
+  /* font-family: "Josefin Slab", sans-serif; */
+  font-family: var(--font-text);
+  font-size: 1.5em;
 `;
 
 const Result = styled.div`
-  position: fixed;
+  /* position: fixed; */
   top: 15em;
 `;
 
+const ProductName = styled.span`
+  font-weight: bold;
+`;
+
 const Button = styled.button`
-  position: fixed;
+  /* position: fixed; */
   top: 17em;
   margin-top: 1em;
+  background: var(--color-header);
+  padding: 0.2em 0.4em;
+  border: 0.5px solid black;
+  border-radius: 2px;
 `;
 
 const Image = styled.img`

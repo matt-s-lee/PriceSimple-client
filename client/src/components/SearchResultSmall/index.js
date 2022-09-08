@@ -98,7 +98,7 @@ const Card = styled.div`
   display: flex;
   height: 10em;
   border: 1px solid #828282;
-  border-radius: 10px;
+  border-radius: 4px;
   margin: 0.5em 0.5em;
   padding: 0.5em 0.5em;
   font-family: "Roboto", sans-serif;
@@ -151,11 +151,21 @@ const Cart = styled.div`
 const VoilaLink = styled(VoilaLogo)`
   height: 1em;
   cursor: pointer;
+  transition: all 0.1s cubic-bezier(0.075, 0.82, 0.165, 1);
+
+  &:hover {
+    scale: 1.05;
+  }
 `;
 
 const MetroLink = styled(MetroLogo)`
   height: 1em;
   cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.075, 0.82, 0.165, 1);
+
+  &:hover {
+    scale: 1.1;
+  }
 `;
 
 const SmallFont = styled.div`

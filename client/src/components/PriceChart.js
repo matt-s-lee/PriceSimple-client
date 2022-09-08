@@ -20,30 +20,38 @@ ChartJS.register(
   Tooltip,
   Legend
 );
-
 const PriceChart = ({ product, dataset, yAxis }) => {
   const labels = ["2022-08-04", "2022-08-11", "2022-08-18"];
   const options = {
     responsive: true,
-    maintainAspectRatio: false,
+    maintainAspectRatio: true,
     scales: {
       y: {
         title: {
           display: true,
           text: yAxis,
+          font: { family: "'Jost', Helvetica, sans-serif" },
+          color: "black",
         },
         beginAtZero: true,
         ticks: {
+          font: { family: "'Jost', Helvetica, sans-serif" },
           // Include a dollar sign in the ticks
           callback: function (value, index, ticks) {
             return "$" + value.toFixed(2);
           },
         },
       },
+      x: {
+        ticks: {
+          font: { family: "'Jost', Helvetica, sans-serif" },
+        },
+      },
     },
     plugins: {
       legend: {
         labels: {
+          color: "black",
           font: {
             family: "'Jost', sans-serif",
             weight: "600",

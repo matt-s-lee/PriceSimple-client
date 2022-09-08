@@ -17,7 +17,7 @@ const Homepage = () => {
         <Main>
           <Title>PriceSimple</Title>
           <Text>Find the best prices on produce at your local grocery store</Text>
-          <Button onClick={onClickFunc}>Search the latest produce</Button>
+          <Button onClick={onClickFunc}>{"Search the latest produce".toUpperCase()}</Button>
         </Main>
       </FadeIn>
     </Background>
@@ -67,12 +67,13 @@ const Text = styled.p`
 
 const Button = styled.button`
   position: absolute;
-  border: 1px solid black;
+  border: 0.5px solid black;
   border-radius: 8px;
   /* margin-top: 2em; */
   top: 75vh;
   padding: 0.6em 1em;
-  background: var(--color-button);
-  font-family: "Josefin Slab", serif;
+  background: var(--color-header);
+  font-family: var(--font-text);
+  font-weight: 200;
   align-self: center;
 `;

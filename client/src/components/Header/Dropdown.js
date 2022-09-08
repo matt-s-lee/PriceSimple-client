@@ -22,9 +22,6 @@ const Dropdown = ({ menuOpen, setMenuOpen }) => {
       <Options to="basket" onClick={clickHandler}>
         Basket
       </Options>
-      <Options to="profile" onClick={clickHandler}>
-        Profile
-      </Options>
       <Options to="" onClick={clickHandler}>
         About
       </Options>
