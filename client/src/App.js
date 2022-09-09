@@ -25,7 +25,7 @@ const App = () => {
   } = useContext(ProductContext);
 
   const createUser = async () => {
-    const response = await fetch(`http://localhost:8000/profile/${user.sub}`, {
+    await fetch(`http://localhost:8000/profile/${user.sub}`, {
       method: "POST",
       body: JSON.stringify({
         _id: user.sub,
@@ -37,7 +37,6 @@ const App = () => {
         "Content-Type": "application/json",
       },
     });
-    const fetchedUser = await response.json();
   };
 
   useEffect(

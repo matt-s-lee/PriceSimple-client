@@ -17,12 +17,12 @@ const Dropdown = ({ menuOpen, setMenuOpen }) => {
         Search Item
       </Options>
       <Options to="compare" onClick={clickHandler}>
-        Compare
+        Price History
       </Options>
       <Options to="basket" onClick={clickHandler}>
         Basket
       </Options>
-      <Options to="" onClick={clickHandler}>
+      <Options to="about" onClick={clickHandler}>
         About
       </Options>
     </Menu>

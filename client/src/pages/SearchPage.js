@@ -22,8 +22,9 @@ export const Background = styled.div`
   position: fixed;
   width: 100%;
   height: 100%;
-  background: rgb(255, 255, 255);
-  background: linear-gradient(0deg, rgba(255, 255, 255, 1) 0%, rgba(8, 87, 0, 1) 89%);
+  /* background: rgb(255, 255, 255); */
+  /* background: linear-gradient(0deg, rgba(175, 110, 77, 1) 0%, rgba(237, 240, 211, 1) 89%); */
+  background: linear-gradient(0deg, rgba(237, 240, 211, 1) 0%, rgba(175, 110, 77, 1) 89%);
   color: white;
   display: flex;
   flex-direction: column;
@@ -37,6 +38,7 @@ export const Title = styled.h2`
   align-self: center;
   /* letter-spacing: 2px; */
   font-family: var(--font-text);
+  /* color: #85754e; */
 `;
 
 const Image = styled.img`

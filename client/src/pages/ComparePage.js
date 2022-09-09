@@ -101,15 +101,16 @@ const ComparePage = () => {
 const Wrapper = styled(Background)`
   align-items: center;
   background: rgb(255, 255, 255);
-  background: linear-gradient(0deg, rgba(255, 255, 255, 1) 0%, rgba(58, 127, 0, 1) 89%);
+  background: linear-gradient(0deg, rgba(237, 240, 211, 1) 0%, rgba(139, 125, 58, 1) 89%);
+  /* background: linear-gradient(0deg, rgba(139, 125, 58, 1) 0%, rgba(237, 240, 211, 1) 89%); */
 `;
 
 const Title = styled.h2`
   margin: 2em 0 1em 0;
   font-weight: 100;
-  /* font-family: "Josefin Slab", sans-serif; */
   font-family: var(--font-text);
   font-size: 1.5em;
+  /* color: rgba(139, 125, 58, 1); */
 `;
 
 const Result = styled.div`
