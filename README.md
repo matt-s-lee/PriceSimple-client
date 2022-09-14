@@ -1,11 +1,10 @@
 # PriceSimple
 A website that compares prices of vegetables between grocery stores, as well as from week-to-week. 
 
-STACK:
-React, Node.js (Express), Puppeteer, Chart.js, styled-components, Auth0
+![Mobile homepage](screencaps/mobile-home.png)
 
-STORAGE:
-MongoDB
+STACK:
+React, Node.js (Express), MongoDB, Puppeteer, Chart.js, styled-components, Auth0
 
 BACKGROUND: 
 I was interested in developing an accessible, easy-to-use website to help people save money, especially in light of the increasing cost of everyday goods and services. Given the complexity and sheer amount of grocery store data, I decided to start with fresh vegetables, because of the role they have improving health outcomes. (Really: who couldn't benefit from eating more veggies?)
@@ -34,4 +33,4 @@ Other than that, I am working on a few things:
 - currently, the data is scraped into a .json file, which then is imported into MongoDB. I would instead like to use Mongoose to push the data directly into Mongo;
 - hosting the website so that it can be used!
 
-NB: the back-end code is available here: https://github.com/matt-s-lee/PriceSimple-server
+NB: the back-end code is available here: https://github.com/matt-s-lee/PriceSimple-server. Mock-ups for mobile version created using https://previewed.app/
