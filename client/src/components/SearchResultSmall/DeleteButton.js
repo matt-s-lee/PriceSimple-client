@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { Button } from "./AddToCartButton";
 import { useAuth0 } from "@auth0/auth0-react";
 
